@@ -76,8 +76,8 @@ def make_slide(
 
     draw.rectangle((0, 0, WIDTH, 116), fill=NAVY)
     draw.rectangle((0, 112, WIDTH, 116), fill=RED)
-    draw.text((54, 28), "아성다이소 위험성평가", font=font(24, True), fill=WHITE)
-    draw.text((54, 66), "30초 핵심 실행 가이드", font=font(17), fill="#C9D8F0")
+    draw.text((54, 28), "아성다이소 정기 위험성평가", font=font(24, True), fill=WHITE)
+    draw.text((54, 66), "25초 핵심 실행 가이드", font=font(17), fill="#C9D8F0")
 
     badge_box = (1015, 34, 1220, 84)
     draw.rounded_rectangle(badge_box, radius=25, fill=BLUE)
@@ -110,8 +110,8 @@ def make_slide(
         draw.text((510, 318), "먼저 접속구분을 선택합니다.", font=font(26, True), fill=TEXT)
         bullets = [
             "본사 · 매장 · 오픈지원",
-            "정기 · 최초 평가 구분",
-            "평가기간(년도·상/하반기) 확인",
+            "평가유형은 '정기' 선택",
+            "영업부에 맞는 접속 주소(V2~V6) 확인",
         ]
         for index, item in enumerate(bullets):
             top = 385 + index * 67
@@ -169,8 +169,8 @@ def build_video() -> None:
         ),
         make_slide(
             "STEP 3",
-            "평가표 상·중·하 점검",
-            "위험요인과 안전조치, 개선대책 및 현장사진을 확인합니다.",
+            "16개 공정 평가표 상·중·하 점검",
+            "공정 순서 칩으로 이동하며 위험요인, 개선대책, 현장사진을 확인합니다.",
             "shot-table.png",
         ),
         make_slide(
