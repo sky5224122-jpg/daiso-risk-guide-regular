@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정기 위험성평가 실행 가이드 | 아성다이소</title>
+<meta name="description" content="아성다이소 정기 위험성평가 웹앱 실행 가이드 — 관리감독자·관리자 직원용">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --c-bg: #F4F6FA;
+  --c-surface: #FFFFFF;
+  --c-surface-alt: #EDF0F7;
+  --c-border: #D4DAE5;
+  --c-border-light: #E5E9F0;
+  --c-text: #111827;
+  --c-text-secondary: #4B5563;
+  --c-text-muted: #9CA3AF;
+  --c-primary: #1E3A6E;
+  --c-primary-light: #E0E8F5;
+  --c-primary-dark: #0F2244;
+  --c-primary-gradient: linear-gradient(135deg, #1E3A6E 0%, #2B5EA7 100%);
+  --c-accent: #0D6B4C;
+  --c-daiso-red: #D0272D;
+  --c-success: #059669;
+  --c-success-light: #D1FAE5;
+  --c-warning: #D97706;
+  --c-warning-light: #FEF3C7;
+  --c-danger: #DC2626;
+  --c-danger-light: #FEE2E2;
+  --c-overlay: rgba(15,23,42,0.55);
+  --c-card-shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
+  --c-card-shadow-hover: 0 8px 25px rgba(15,23,42,0.12);
+  --c-nav-bg: #FFFFFF;
+  --c-nav-text: #6B7280;
+  --c-nav-active: #1E3A6E;
+  --c-hero-bg: linear-gradient(160deg, #0F2244 0%, #1E3A6E 40%, #2B5EA7 100%);
+  --c-hero-text: #FFFFFF;
+  --c-hero-sub: rgba(255,255,255,0.75);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 5px;
+  --font: 'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Segoe UI',sans-serif;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --content-max: 720px;
+  --content-wide: 960px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --c-bg:#0C111B;--c-surface:#161D2E;--c-surface-alt:#1E2740;
+    --c-border:#2D3A52;--c-border-light:#232E44;
+    --c-text:#E5E7EB;--c-text-secondary:#9CA3B8;--c-text-muted:#6B7280;
+    --c-primary:#7BA4D9;--c-primary-light:#1A2B46;--c-primary-dark:#B4CDE8;
+    --c-primary-gradient:linear-gradient(135deg,#1A2B46 0%,#233B60 100%);
+    --c-accent:#3FA184;--c-success:#34D399;--c-success-light:#064E3B;
+    --c-daiso-red:#E2585C;
+    --c-warning:#FBBF24;--c-warning-light:#78350F;
+    --c-danger:#F87171;--c-danger-light:#7F1D1D;
+    --c-overlay:rgba(0,0,0,0.7);
+    --c-card-shadow:0 1px 3px rgba(0,0,0,0.3);
+    --c-card-shadow-hover:0 8px 25px rgba(0,0,0,0.4);
+    --c-nav-bg:#161D2E;--c-nav-text:#6B7280;--c-nav-active:#7BA4D9;
+    --c-hero-bg:linear-gradient(160deg,#0C111B 0%,#161D2E 40%,#1E2740 100%);
+    --c-hero-text:#E5E7EB;--c-hero-sub:rgba(229,231,235,0.65);
+  }
+}
+:root[data-theme="dark"]{
+  --c-bg:#0C111B;--c-surface:#161D2E;--c-surface-alt:#1E2740;
+  --c-border:#2D3A52;--c-border-light:#232E44;
+  --c-text:#E5E7EB;--c-text-secondary:#9CA3B8;--c-text-muted:#6B7280;
+  --c-primary:#7BA4D9;--c-primary-light:#1A2B46;--c-primary-dark:#B4CDE8;
+  --c-primary-gradient:linear-gradient(135deg,#1A2B46 0%,#233B60 100%);
+  --c-accent:#3FA184;--c-success:#34D399;--c-success-light:#064E3B;
+  --c-daiso-red:#E2585C;
+  --c-warning:#FBBF24;--c-warning-light:#78350F;
+  --c-danger:#F87171;--c-danger-light:#7F1D1D;
+  --c-overlay:rgba(0,0,0,0.7);
+  --c-card-shadow:0 1px 3px rgba(0,0,0,0.3);
+  --c-card-shadow-hover:0 8px 25px rgba(0,0,0,0.4);
+  --c-nav-bg:#161D2E;--c-nav-text:#6B7280;--c-nav-active:#7BA4D9;
+  --c-hero-bg:linear-gradient(160deg,#0C111B 0%,#161D2E 40%,#1E2740 100%);
+  --c-hero-text:#E5E7EB;--c-hero-sub:rgba(229,231,235,0.65);
+}
+:root[data-theme="light"]{
+  --c-bg:#F4F6FA;--c-surface:#FFFFFF;--c-surface-alt:#EDF0F7;
+  --c-border:#D4DAE5;--c-border-light:#E5E9F0;
+  --c-text:#111827;--c-text-secondary:#4B5563;--c-text-muted:#9CA3AF;
+  --c-primary:#1E3A6E;--c-primary-light:#E0E8F5;--c-primary-dark:#0F2244;
+  --c-primary-gradient:linear-gradient(135deg,#1E3A6E 0%,#2B5EA7 100%);
+  --c-accent:#0D6B4C;--c-success:#059669;--c-success-light:#D1FAE5;
+  --c-daiso-red:#D0272D;
+  --c-warning:#D97706;--c-warning-light:#FEF3C7;
+  --c-danger:#DC2626;--c-danger-light:#FEE2E2;
+  --c-overlay:rgba(15,23,42,0.55);
+  --c-card-shadow:0 1px 3px rgba(15,23,42,0.08),0 1px 2px rgba(15,23,42,0.04);
+  --c-card-shadow-hover:0 8px 25px rgba(15,23,42,0.12);
+  --c-nav-bg:#FFFFFF;--c-nav-text:#6B7280;--c-nav-active:#1E3A6E;
+  --c-hero-bg:linear-gradient(160deg,#0F2244 0%,#1E3A6E 40%,#2B5EA7 100%);
+  --c-hero-text:#FFFFFF;--c-hero-sub:rgba(255,255,255,0.75);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--c-bg);color:var(--c-text);line-height:1.65;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--c-primary);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ═══ APP SHELL ═══ */
+#app{display:block;min-height:100dvh;padding-bottom:72px}
+
+/* Top bar */
+.top-bar{position:sticky;top:0;z-index:100;background:var(--c-surface);border-bottom:1px solid var(--c-border-light);height:56px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(12px);padding:0 20px}
+@media(min-width:768px){.top-bar{padding:0 32px}}
+.top-bar-brand{display:flex;align-items:center;gap:10px}
+.top-bar-logo{width:32px;height:32px;background:var(--c-primary-gradient);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;letter-spacing:-0.5px}
+.top-bar-text{font-size:15px;font-weight:700;color:var(--c-text);letter-spacing:-0.3px}
+.top-bar-sub{font-size:11px;color:var(--c-text-muted);margin-left:8px;font-weight:500;display:none}
+@media(min-width:768px){.top-bar-sub{display:inline}}
+.top-bar-actions{display:flex;gap:6px}
+.top-bar-btn{width:36px;height:36px;border-radius:8px;border:none;background:var(--c-surface-alt);color:var(--c-text-secondary);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.top-bar-btn:hover{background:var(--c-primary-light);color:var(--c-primary)}
+.top-bar-btn:active{transform:scale(.92)}
+
+/* Bottom nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--c-nav-bg);border-top:1px solid var(--c-border-light);display:flex;height:64px;padding-bottom:env(safe-area-inset-bottom,0)}
+@media(min-width:768px){.bottom-nav{display:none}}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;color:var(--c-nav-text);font-size:10px;font-weight:600;cursor:pointer;transition:color .15s;-webkit-tap-highlight-color:transparent;position:relative}
+.nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-btn.active{color:var(--c-nav-active)}
+.nav-btn.active::after{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:28px;height:3px;background:var(--c-nav-active);border-radius:0 0 4px 4px}
+
+/* PC sidebar nav */
+.pc-sidebar{display:none}
+@media(min-width:768px){
+  .pc-sidebar{display:flex;flex-direction:column;position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--c-surface);border-right:1px solid var(--c-border-light);padding:24px 0;z-index:50;overflow-y:auto}
+  #app{padding-bottom:0}
+  .page{margin-left:220px!important}
+  .top-bar{padding-left:20px}
+}
+.pc-nav-item{display:flex;align-items:center;gap:10px;padding:11px 24px;font-size:14px;font-weight:600;color:var(--c-text-secondary);cursor:pointer;transition:all .15s;border-left:3px solid transparent;letter-spacing:-0.2px}
+.pc-nav-item:hover{background:var(--c-surface-alt);color:var(--c-text)}
+.pc-nav-item.active{color:var(--c-primary);background:var(--c-primary-light);border-left-color:var(--c-primary)}
+.pc-nav-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.pc-nav-divider{height:1px;background:var(--c-border-light);margin:16px 24px}
+.pc-nav-label{padding:6px 24px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c-text-muted)}
+
+/* Pages */
+.page{display:none;padding:20px 20px 32px;max-width:var(--content-max);margin:0 auto;animation:fadeUp .3s ease}
+.page.active{display:block}
+@media(min-width:768px){.page{padding:32px 40px 48px;max-width:var(--content-wide)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ HERO — PC 전용 와이드 배너 ═══ */
+.hero-banner{background:var(--c-hero-bg);color:var(--c-hero-text);padding:40px 24px 36px;text-align:center;position:relative;overflow:hidden}
+@media(min-width:768px){
+  .hero-banner{padding:56px 48px 48px;text-align:left;display:flex;align-items:center;gap:48px}
+}
+.hero-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.hero-banner::after{content:'';position:absolute;bottom:-60px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.03)}
+.hero-content{position:relative;z-index:1;flex:1}
+.hero-badge{display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;background:rgba(255,255,255,0.15);color:var(--c-hero-text);margin-bottom:14px;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.1)}
+.hero-title{font-size:26px;font-weight:900;line-height:1.3;margin-bottom:10px;text-wrap:balance;letter-spacing:-0.5px}
+@media(min-width:768px){.hero-title{font-size:34px}}
+.hero-desc{font-size:14px;color:var(--c-hero-sub);line-height:1.7;max-width:420px}
+@media(min-width:768px){.hero-desc{font-size:15px}}
+.hero-stats{position:relative;z-index:1;display:flex;gap:12px;margin-top:20px;justify-content:center}
+@media(min-width:768px){.hero-stats{flex-direction:column;gap:10px;margin-top:0;flex-shrink:0;width:180px}}
+.hero-stat{background:rgba(255,255,255,0.1);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:10px 14px;text-align:center}
+@media(min-width:768px){.hero-stat{text-align:left;display:flex;align-items:center;gap:10px}}
+.hero-stat-num{font-size:20px;font-weight:900;display:block}
+@media(min-width:768px){.hero-stat-num{font-size:22px}}
+.hero-stat-label{font-size:10px;color:var(--c-hero-sub);letter-spacing:0.5px;font-weight:600}
+
+/* Section headers */
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c-primary);margin-bottom:6px}
+.section-title{font-size:22px;font-weight:800;color:var(--c-text);line-height:1.3;margin-bottom:6px;text-wrap:balance;letter-spacing:-0.3px}
+@media(min-width:768px){.section-title{font-size:26px}}
+.section-desc{font-size:14px;color:var(--c-text-secondary);line-height:1.6;margin-bottom:24px}
+
+/* Cards */
+.card{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:20px;box-shadow:var(--c-card-shadow);transition:box-shadow .2s,transform .2s;margin-bottom:14px}
+.card:hover{box-shadow:var(--c-card-shadow-hover)}
+.quick-video-card{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:18px;box-shadow:var(--c-card-shadow);margin-bottom:18px}
+.quick-video-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.quick-video-icon{width:42px;height:42px;border-radius:12px;background:var(--c-primary-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0}
+.quick-video-title{font-size:17px;font-weight:800;color:var(--c-text);line-height:1.35}
+.quick-video-desc{font-size:12px;color:var(--c-text-secondary);margin-top:3px}
+.quick-video-wrap{position:relative;overflow:hidden;border-radius:10px;background:#0F2244;aspect-ratio:16/9}
+.quick-video-wrap video{display:block;width:100%;height:100%;object-fit:contain;background:#0F2244}
+.quick-video-note{font-size:11px;color:var(--c-text-muted);margin-top:9px;text-align:center}
+@media(min-width:768px){
+  .quick-video-card{padding:22px}
+  .quick-video-title{font-size:19px}
+  .quick-video-desc{font-size:13px}
+}
+.guide-video-locked{overflow:hidden}
+.mandatory-video-gate{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(8,18,38,.86);backdrop-filter:blur(8px)}
+.mandatory-video-gate.open{display:flex}
+.mandatory-video-dialog{width:min(760px,100%);max-height:calc(100dvh - 36px);overflow:auto;background:var(--c-surface);border:1px solid var(--c-border);border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.35);padding:20px}
+.mandatory-video-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;background:var(--c-danger-light);color:var(--c-danger);font-size:11px;font-weight:800;margin-bottom:10px}
+.mandatory-video-title{font-size:22px;font-weight:900;line-height:1.35;color:var(--c-text);letter-spacing:-.4px}
+.mandatory-video-desc{font-size:13px;color:var(--c-text-secondary);margin:6px 0 14px}
+.mandatory-video-wrap{overflow:hidden;border-radius:12px;background:#0F2244;aspect-ratio:16/9}
+.mandatory-video-wrap video{display:block;width:100%;height:100%;object-fit:contain;background:#0F2244}
+.mandatory-video-status{min-height:22px;margin-top:10px;text-align:center;font-size:12px;font-weight:700;color:var(--c-primary)}
+.mandatory-video-continue{width:100%;min-height:48px;margin-top:8px;border:0;border-radius:10px;background:var(--c-primary-gradient);color:#fff;font:inherit;font-size:15px;font-weight:800;cursor:pointer}
+.mandatory-video-continue:disabled{cursor:not-allowed;background:var(--c-border);color:var(--c-text-muted)}
+@media(min-width:768px){.mandatory-video-dialog{padding:26px}.mandatory-video-title{font-size:26px}}
+
+/* Info box */
+.info-box{padding:14px 16px;border-radius:var(--radius-sm);margin-bottom:14px;font-size:13px;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+.info-box .ib-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.info-box.info{background:var(--c-primary-light);color:var(--c-primary-dark);border:1px solid var(--c-primary)}
+.info-box.warn{background:var(--c-warning-light);color:var(--c-warning);border:1px solid var(--c-warning)}
+.info-box.danger{background:var(--c-danger-light);color:var(--c-danger);border:1px solid var(--c-danger)}
+.info-box.success{background:var(--c-success-light);color:var(--c-success);border:1px solid var(--c-success)}
+
+/* Menu grid */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(min-width:768px){.menu-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.menu-card{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden}
+.menu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c-primary-gradient);opacity:0;transition:opacity .2s}
+.menu-card:hover{box-shadow:var(--c-card-shadow-hover);transform:translateY(-2px)}
+.menu-card:hover::before{opacity:1}
+.menu-card:active{transform:scale(.97)}
+.menu-card-icon{font-size:32px;margin-bottom:10px}
+@media(min-width:768px){.menu-card-icon{font-size:36px;margin-bottom:12px}}
+.menu-card-title{font-size:15px;font-weight:700;margin-bottom:4px;letter-spacing:-0.2px}
+.menu-card-desc{font-size:12px;color:var(--c-text-muted);line-height:1.5}
+
+/* Step flow chips */
+.step-flow{display:flex;align-items:center;gap:0;margin-bottom:20px;overflow-x:auto;padding:4px 0;-webkit-overflow-scrolling:touch}
+.step-chip{padding:8px 14px;border-radius:24px;font-size:12px;font-weight:700;white-space:nowrap;background:var(--c-surface-alt);color:var(--c-text-muted);border:1px solid var(--c-border-light);transition:all .2s;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.step-chip.active{background:var(--c-primary);color:#fff;border-color:var(--c-primary);box-shadow:0 2px 8px rgba(30,58,110,0.3)}
+.step-chip.done{background:var(--c-success-light);color:var(--c-success);border-color:var(--c-success)}
+.step-arrow{color:var(--c-text-muted);font-size:14px;margin:0 2px;flex-shrink:0}
+
+/* Step navigation buttons */
+.step-nav{display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--c-border-light)}
+.step-nav-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 18px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;border:none;letter-spacing:-0.2px}
+.step-nav-btn:active{transform:scale(.97)}
+.step-nav-btn.prev{background:var(--c-surface-alt);color:var(--c-text-secondary);border:1px solid var(--c-border)}
+.step-nav-btn.prev:hover{background:var(--c-surface);border-color:var(--c-primary);color:var(--c-primary)}
+.step-nav-btn.next{background:var(--c-primary-gradient);color:#fff;border:none;box-shadow:0 2px 8px rgba(30,58,110,0.25)}
+.step-nav-btn.next:hover{box-shadow:0 4px 12px rgba(30,58,110,0.35)}
+.step-nav-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* Step detail card */
+.step-detail{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--c-card-shadow)}
+.step-detail-header{padding:18px 20px;border-bottom:1px solid var(--c-border-light);display:flex;align-items:center;gap:14px}
+@media(min-width:768px){.step-detail-header{padding:20px 24px}}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--c-primary-gradient);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-detail-title{font-size:17px;font-weight:700;letter-spacing:-0.2px}
+@media(min-width:768px){.step-detail-title{font-size:18px}}
+.step-detail-body{padding:20px}
+@media(min-width:768px){.step-detail-body{padding:24px}}
+.step-detail-body ul{padding-left:18px;margin:8px 0}
+.step-detail-body li{margin-bottom:8px;font-size:14px;color:var(--c-text-secondary);line-height:1.7}
+.step-detail-body li strong{color:var(--c-text);font-weight:600}
+
+/* FAQ */
+.faq-item{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden;box-shadow:var(--c-card-shadow);transition:box-shadow .2s}
+.faq-item:hover{box-shadow:var(--c-card-shadow-hover)}
+.faq-q{padding:16px 18px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.faq-q .q-badge{background:var(--c-primary-gradient);color:#fff;font-size:11px;font-weight:800;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.faq-q .q-arrow{margin-left:auto;color:var(--c-text-muted);transition:transform .25s;font-size:14px}
+.faq-item.open .q-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:500px}
+.faq-a-inner{padding:0 18px 18px;font-size:13px;color:var(--c-text-secondary);line-height:1.7;border-top:1px solid var(--c-border-light);padding-top:14px;margin:0 8px}
+
+/* Search */
+.search-wrap{position:relative;margin-bottom:16px}
+.search-input{width:100%;padding:14px 18px 14px 46px;border:1px solid var(--c-border);border-radius:var(--radius);background:var(--c-surface);color:var(--c-text);font-size:15px;font-family:var(--font);outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:var(--c-card-shadow)}
+.search-input:focus{border-color:var(--c-primary);box-shadow:0 0 0 3px rgba(30,58,110,0.1)}
+.search-input::placeholder{color:var(--c-text-muted)}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--c-text-muted);font-size:16px}
+.search-tag{display:inline-block;padding:7px 16px;border-radius:24px;font-size:12px;font-weight:600;background:var(--c-surface);color:var(--c-text-secondary);border:1px solid var(--c-border-light);cursor:pointer;margin:0 4px 8px 0;transition:all .15s;box-shadow:var(--c-card-shadow)}
+.search-tag:hover{border-color:var(--c-primary);color:var(--c-primary);background:var(--c-primary-light)}
+.search-result{padding:16px 18px;background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius-sm);margin-bottom:8px;cursor:pointer;box-shadow:var(--c-card-shadow);transition:all .15s}
+.search-result:hover{box-shadow:var(--c-card-shadow-hover);transform:translateY(-1px)}
+.search-result-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.search-result-text{font-size:12px;color:var(--c-text-muted);line-height:1.5}
+.search-result mark{background:var(--c-warning-light);color:var(--c-warning);padding:1px 4px;border-radius:3px}
+#searchEmpty{display:none;text-align:center;padding:40px 20px;color:var(--c-text-muted);font-size:14px}
+
+/* Penalty table */
+.penalty-table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--c-border-light)}
+.penalty-table th{background:var(--c-primary);color:#fff;padding:11px 14px;text-align:left;font-weight:600;font-size:12px}
+.penalty-table td{padding:11px 14px;border-bottom:1px solid var(--c-border-light);vertical-align:top}
+.penalty-table tr:last-child td{border-bottom:none}
+.penalty-table .amt{color:var(--c-danger);font-weight:700;white-space:nowrap}
+
+/* Approval flow */
+.approval-flow{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.approval-step{display:flex;align-items:flex-start;gap:14px;position:relative;padding-bottom:22px}
+.approval-step:last-child{padding-bottom:0}
+.approval-step::before{content:'';position:absolute;left:18px;top:40px;bottom:0;width:2px;background:var(--c-border-light)}
+.approval-step:last-child::before{display:none}
+.approval-dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;z-index:1}
+.approval-dot.blue{background:var(--c-primary-light);color:var(--c-primary)}
+.approval-dot.green{background:var(--c-success-light);color:var(--c-success)}
+.approval-dot.amber{background:var(--c-warning-light);color:var(--c-warning)}
+.approval-content{flex:1}
+.approval-content h4{font-size:15px;font-weight:700;margin-bottom:3px}
+.approval-content p{font-size:13px;color:var(--c-text-muted);line-height:1.5}
+
+/* Risk level badges */
+.risk-high{background:#FEE2E2;color:#DC2626;border:1px solid #FECACA;padding:5px 12px;border-radius:6px;font-size:13px;font-weight:700;display:inline-block}
+.risk-mid{background:#FEF3C7;color:#D97706;border:1px solid #FDE68A;padding:5px 12px;border-radius:6px;font-size:13px;font-weight:700;display:inline-block}
+.risk-low{background:#D1FAE5;color:#059669;border:1px solid #A7F3D0;padding:5px 12px;border-radius:6px;font-size:13px;font-weight:700;display:inline-block}
+
+/* Back button */
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:var(--radius-xs);border:1px solid var(--c-border-light);background:var(--c-surface);color:var(--c-text-secondary);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:20px;transition:all .15s;box-shadow:var(--c-card-shadow)}
+.back-btn:hover{border-color:var(--c-primary);color:var(--c-primary)}
+@media(min-width:768px){.back-btn{display:none}}
+
+/* Expandable notice */
+.notice-collapsible{background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);overflow:hidden;margin-bottom:14px;box-shadow:var(--c-card-shadow);transition:box-shadow .2s}
+.notice-collapsible:hover{box-shadow:var(--c-card-shadow-hover)}
+.notice-header{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;-webkit-tap-highlight-color:transparent}
+.notice-header .n-icon{font-size:18px}
+.notice-header .n-arrow{margin-left:auto;transition:transform .25s;font-size:12px;color:var(--c-text-muted)}
+.notice-collapsible.open .n-arrow{transform:rotate(180deg)}
+.notice-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.notice-collapsible.open .notice-body{max-height:1200px}
+.notice-body-inner{padding:0 18px 18px;font-size:13px;color:var(--c-text-secondary);line-height:1.7}
+
+/* QR card */
+.qr-card{display:flex;gap:18px;align-items:center;background:var(--c-surface);border:1px solid var(--c-border-light);border-radius:var(--radius);padding:20px;box-shadow:var(--c-card-shadow);transition:box-shadow .2s}
+.qr-card:hover{box-shadow:var(--c-card-shadow-hover)}
+.qr-img{width:96px;height:96px;flex-shrink:0;border-radius:8px;border:1px solid var(--c-border-light)}
+.qr-info{flex:1;min-width:0}
+.qr-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.qr-desc{font-size:13px;color:var(--c-text-secondary);line-height:1.5;margin-bottom:8px}
+.qr-url{font-size:11px;color:var(--c-text-muted);word-break:break-all;margin-bottom:10px;font-family:'SF Mono','Fira Code','Consolas',monospace;background:var(--c-surface-alt);padding:4px 8px;border-radius:4px;display:inline-block}
+.qr-copy-btn{padding:8px 14px;border-radius:var(--radius-xs);border:1px solid var(--c-border);background:var(--c-surface-alt);color:var(--c-text);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.qr-copy-btn:hover{border-color:var(--c-primary);color:var(--c-primary);background:var(--c-primary-light)}
+.qr-copy-btn:active{transform:scale(.95)}
+.qr-copy-btn.copied{background:var(--c-success-light);color:var(--c-success);border-color:var(--c-success)}
+
+/* Screenshot frame */
+.screenshot-frame{position:relative;margin:16px 0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--c-border-light);box-shadow:var(--c-card-shadow);background:var(--c-surface-alt);transition:box-shadow .2s}
+.screenshot-frame:hover{box-shadow:var(--c-card-shadow-hover)}
+.screenshot-frame img{width:100%;display:block;cursor:zoom-in}
+#lightbox{position:fixed;inset:0;z-index:9998;background:rgba(10,14,24,.92);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lightbox img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.screenshot-badge{position:absolute;top:10px;left:10px;background:rgba(15,34,68,.85);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.2px;padding:4px 10px;border-radius:5px;z-index:2;text-transform:uppercase;backdrop-filter:blur(4px)}
+.screenshot-caption{padding:10px 16px;font-size:12px;color:var(--c-text-secondary);background:var(--c-surface);border-top:1px solid var(--c-border-light);text-align:center;font-weight:500}
+.screenshot-frame.narrow{max-width:280px;margin-left:auto;margin-right:auto}
+.screenshot-frame.wide{max-width:100%}
+.screenshot-frame.wide img{background:#fff}
+
+/* Sidebar overlay (mobile) */
+#sideMenu{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:0;transition:opacity .3s}
+#sideMenu.open{pointer-events:auto;opacity:1}
+.side-overlay{position:absolute;inset:0;background:var(--c-overlay)}
+.side-panel{position:absolute;right:0;top:0;bottom:0;width:300px;background:var(--c-surface);transform:translateX(100%);transition:transform .3s ease;padding:24px;overflow-y:auto}
+#sideMenu.open .side-panel{transform:translateX(0)}
+.side-close{width:36px;height:36px;border-radius:8px;border:1px solid var(--c-border-light);background:var(--c-surface-alt);color:var(--c-text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.side-link{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--c-border-light);font-size:14px;font-weight:600;color:var(--c-text);cursor:pointer;transition:color .15s}
+.side-link:hover{color:var(--c-primary)}
+.side-link:last-child{border-bottom:none}
+.side-link .sl-icon{font-size:18px;width:28px;text-align:center}
+@media(min-width:768px){#sideMenu{display:none}}
+
+/* Misc */
+.divider{height:1px;background:var(--c-border-light);margin:24px 0}
+.badge{display:inline-block;padding:3px 10px;border-radius:5px;font-size:11px;font-weight:700}
+.badge-blue{background:var(--c-primary-light);color:var(--c-primary)}
+.badge-green{background:var(--c-success-light);color:var(--c-success)}
+.badge-amber{background:var(--c-warning-light);color:var(--c-warning)}
+.badge-red{background:var(--c-danger-light);color:var(--c-danger)}
+.text-center{text-align:center}
+.mt-8{margin-top:8px}
+.mt-16{margin-top:16px}
+.mb-8{margin-bottom:8px}
+.mb-16{margin-bottom:16px}
+.mb-24{margin-bottom:24px}
+
+/* Required checklist card */
+.required-card{background:var(--c-surface);border:2px solid var(--c-danger);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;box-shadow:0 2px 12px rgba(220,38,38,0.1)}
+.required-card-header{background:var(--c-danger);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;letter-spacing:-0.2px}
+.required-card-header span{font-size:20px}
+.required-card-body{padding:18px 20px}
+.required-card-body p{font-size:14px;font-weight:700;color:var(--c-danger);line-height:1.6;margin-bottom:14px}
+.req-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:768px){.req-list{grid-template-columns:1fr 1fr}}
+.req-list li{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--c-danger-light);border-radius:var(--radius-sm);font-size:13px;font-weight:600;color:var(--c-text)}
+.req-list li .req-icon{font-size:15px;flex-shrink:0}
+
+/* Footer */
+.page-footer{text-align:center;padding:28px 0 8px;font-size:11px;color:var(--c-text-muted);line-height:1.6;border-top:1px solid var(--c-border-light);margin-top:32px}
+.page-footer strong{color:var(--c-text-secondary);font-weight:600}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--c-border);border-radius:4px}
+
+@media(display-mode:standalone){
+  body{padding-top:env(safe-area-inset-top,0)}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDE MENU (mobile only) ═══════════ -->
+<div id="sideMenu">
+  <div class="side-overlay" onclick="closeSide()"></div>
+  <div class="side-panel">
+    <button class="side-close" onclick="closeSide()">&times;</button>
+    <div style="font-size:11px;color:var(--c-text-muted);letter-spacing:2px;margin-bottom:6px">DAISO SAFETY</div>
+    <div style="font-size:18px;font-weight:800;margin-bottom:20px;letter-spacing:-0.3px">정기 위험성평가 실행 가이드</div>
+    <div class="side-link" onclick="goPage('home');closeSide()"><span class="sl-icon">&#127968;</span>메인</div>
+    <div class="side-link" onclick="goPage('login');closeSide()"><span class="sl-icon">&#128273;</span>접속 방법</div>
+    <div class="side-link" onclick="goPage('guide');closeSide()"><span class="sl-icon">&#128203;</span>평가 작성 가이드</div>
+    <div class="side-link" onclick="goPage('approval');closeSide()"><span class="sl-icon">&#9989;</span>승인·유의사항</div>
+    <div class="side-link" onclick="goPage('faq');closeSide()"><span class="sl-icon">&#10067;</span>자주 묻는 질문</div>
+    <div class="side-link" onclick="goPage('search');closeSide()"><span class="sl-icon">&#128269;</span>검색</div>
+    <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--c-border-light);font-size:11px;color:var(--c-text-muted);line-height:1.6">
+      안전보건팀 &middot; 2026년 하반기<br>
+      정기 위험성평가 가이드
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 필수 시청 영상 ═══════════ -->
+<div class="mandatory-video-gate" id="mandatoryVideoGate" role="dialog" aria-modal="true" aria-labelledby="mandatoryVideoTitle" aria-hidden="true">
+  <div class="mandatory-video-dialog">
+    <div class="mandatory-video-badge">&#9888;&#65039; 최초 접속 필수 시청</div>
+    <div class="mandatory-video-title" id="mandatoryVideoTitle">25초 실행 영상을 먼저 확인해 주세요</div>
+    <div class="mandatory-video-desc">접속구분·평가유형 선택부터 전자서명, 최종제출, 승인, 인쇄/PDF까지의 필수 흐름입니다.</div>
+    <div class="mandatory-video-wrap">
+      <video id="mandatoryGuideVideo" controls playsinline preload="auto" muted controlslist="nodownload noplaybackrate" poster="assets/quick-guide-poster.jpg" aria-label="필수 시청 위험성평가 25초 실행 영상">
+        <source src="assets/quick-guide-25s.mp4?v=20260729-mandatory" type="video/mp4">
+        현재 브라우저에서는 영상을 재생할 수 없습니다.
+      </video>
+    </div>
+    <div class="mandatory-video-status" id="mandatoryVideoStatus">영상이 끝나면 가이드 시작 버튼이 활성화됩니다.</div>
+    <button class="mandatory-video-continue" id="mandatoryContinueBtn" type="button" disabled>시청 완료 후 가이드 시작</button>
+  </div>
+</div>
+
+<!-- ═══════════ APP ═══════════ -->
+<div id="app">
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-bar-brand">
+      <div class="top-bar-logo">D</div>
+      <div class="top-bar-text" id="topBarTitle">실행 가이드</div>
+      <span class="top-bar-sub">아성다이소 안전보건팀</span>
+    </div>
+    <div class="top-bar-actions">
+      <button class="top-bar-btn" onclick="openSide()" aria-label="메뉴" style="display:none" id="mobileMenuBtn">&#9776;</button>
+    </div>
+  </div>
+
+  <!-- PC Sidebar Navigation -->
+  <nav class="pc-sidebar">
+    <div class="pc-nav-label">가이드</div>
+    <div class="pc-nav-item active" data-page="home" onclick="goPage('home')">
+      <span class="pc-nav-icon">&#127968;</span>메인
+    </div>
+    <div class="pc-nav-item" data-page="login" onclick="goPage('login')">
+      <span class="pc-nav-icon">&#128273;</span>접속 방법
+    </div>
+    <div class="pc-nav-item" data-page="guide" onclick="goPage('guide')">
+      <span class="pc-nav-icon">&#128203;</span>평가 작성 가이드
+    </div>
+    <div class="pc-nav-item" data-page="approval" onclick="goPage('approval')">
+      <span class="pc-nav-icon">&#9989;</span>승인·유의사항
+    </div>
+    <div class="pc-nav-divider"></div>
+    <div class="pc-nav-label">도움말</div>
+    <div class="pc-nav-item" data-page="faq" onclick="goPage('faq')">
+      <span class="pc-nav-icon">&#10067;</span>자주 묻는 질문
+    </div>
+    <div class="pc-nav-item" data-page="search" onclick="goPage('search')">
+      <span class="pc-nav-icon">&#128269;</span>검색
+    </div>
+  </nav>
+
+  <!-- ═══ HOME ═══ -->
+  <div class="page active" id="page-home">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner" style="margin:-20px -20px 28px;border-radius:0">
+      <div class="hero-content">
+        <div class="hero-badge">2026 하반기 · 정기평가</div>
+        <div class="hero-title">정기 위험성평가<br>웹앱 실행 가이드</div>
+        <div class="hero-desc">16개 작업공정별 위험요인을 확인하고, PC·모바일로<br>쉽고 빠르게 정기 위험성평가를 작성할 수 있습니다.</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">5단계</span>
+          <span class="hero-stat-label">작성 프로세스</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">3단계</span>
+          <span class="hero-stat-label">승인 흐름</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 25초 핵심 실행 영상 -->
+    <section class="quick-video-card" aria-labelledby="quickVideoTitle">
+      <div class="quick-video-head">
+        <div class="quick-video-icon" aria-hidden="true">&#9654;</div>
+        <div>
+          <div class="quick-video-title" id="quickVideoTitle">25초 핵심 실행 영상</div>
+          <div class="quick-video-desc">접속부터 전자서명·최종제출·승인·PDF까지 전체 흐름을 빠르게 확인합니다.</div>
+        </div>
+      </div>
+      <div class="quick-video-wrap">
+        <video id="quickGuideVideo" controls playsinline preload="metadata" poster="assets/quick-guide-poster.jpg" aria-label="아성다이소 위험성평가 25초 핵심 실행 가이드">
+          <source src="assets/quick-guide-25s.mp4?v=20260729-mandatory" type="video/mp4">
+          현재 브라우저에서는 영상을 재생할 수 없습니다.
+        </video>
+      </div>
+      <div class="quick-video-note">소리 없이도 볼 수 있도록 모든 단계가 화면 글자로 안내됩니다.</div>
+    </section>
+
+    <!-- 필수 입력·제출 사항 공지 -->
+    <div class="required-card">
+      <div class="required-card-header">
+        <span>&#9888;&#65039;</span>
+        필수 입력·제출 사항 안내
+      </div>
+      <div class="required-card-body">
+        <p>필수 입력 사항을 입력하지 않으면 다음으로 넘어가지 않으며, 최종 제출이 되지 않습니다.</p>
+        <ul class="req-list">
+          <li><span class="req-icon">&#9745;&#65039;</span>근무 인원수 입력</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>근무자 이름(참여근로자) 등록</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>사전교육 일자 입력</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>교육 사진 첨부</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>근로자 참여 전자서명</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>평가결과 공유 전자서명</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>관리감독자 전자서명</li>
+          <li><span class="req-icon">&#9745;&#65039;</span>평가표 필수 작성 (10건 이상)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box warn">
+      <span class="ib-icon">&#9888;&#65039;</span>
+      <div><strong>2027.01.01 시행</strong> — 위험성평가 미실시 시 과태료 최대 1,000만 원 부과</div>
+    </div>
+
+    <div class="section-eyebrow">QUICK MENU</div>
+    <div class="section-title">무엇을 확인하시겠어요?</div>
+    <div class="section-desc">필요한 메뉴를 선택해주세요.</div>
+
+    <div class="menu-grid">
+      <div class="menu-card" onclick="goPage('login')">
+        <div class="menu-card-icon">&#128273;</div>
+        <div class="menu-card-title">접속 방법</div>
+        <div class="menu-card-desc">QR·PC 접속부터<br>로그인까지</div>
+      </div>
+      <div class="menu-card" onclick="goPage('guide')">
+        <div class="menu-card-icon">&#128203;</div>
+        <div class="menu-card-title">평가 작성</div>
+        <div class="menu-card-desc">5단계 위험성평가<br>작성 가이드</div>
+      </div>
+      <div class="menu-card" onclick="goPage('approval')">
+        <div class="menu-card-icon">&#9989;</div>
+        <div class="menu-card-title">승인·제출</div>
+        <div class="menu-card-desc">제출·승인 흐름<br>유의사항</div>
+      </div>
+      <div class="menu-card" onclick="goPage('faq')">
+        <div class="menu-card-icon">&#10067;</div>
+        <div class="menu-card-title">FAQ</div>
+        <div class="menu-card-desc">자주 묻는 질문<br>빠른 답변</div>
+      </div>
+    </div>
+
+    <div class="notice-collapsible" onclick="this.classList.toggle('open')">
+      <div class="notice-header">
+        <span class="n-icon">&#128220;</span>
+        실행 근거 — 산업안전보건법 제36조
+        <span class="n-arrow">&#9660;</span>
+      </div>
+      <div class="notice-body"><div class="notice-body-inner">
+        <p class="mb-8"><strong>위험성평가 제도 강화</strong> — 근로자 참여·공유·기록 의무화 (실행 중심 개편)</p>
+        <table class="penalty-table">
+          <tr><th>위반 사항</th><th>과태료</th></tr>
+          <tr><td>위험성평가 미실시 (정기/수시 평가를 실시하지 않은 경우)</td><td class="amt">1,000만 원 이하</td></tr>
+          <tr><td>근로자 참여 미보장 및 결과 미공유</td><td class="amt">500만 원 이하</td></tr>
+          <tr><td>기록·보존 의무 위반</td><td class="amt">300만 원 이하</td></tr>
+        </table>
+        <p class="mt-8" style="font-size:12px;color:var(--c-text-muted)"><strong>4단계 핵심 실행 의무 :</strong> ① 참여 → ② 평가 → ③ 공유 → ④ 증빙 (5년 보존)</p>
+        <div class="info-box danger mt-16" style="font-size:12px">
+          <span class="ib-icon">&#128680;</span>
+          <div>고용노동부 현장 감독 시 직원이 "위험성평가를 모른다"고 답변하면 서류 조작 의심으로 간주됩니다. 반드시 전 직원에게 교육 및 결과를 공유하세요.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="notice-collapsible" onclick="this.classList.toggle('open')">
+      <div class="notice-header">
+        <span class="n-icon">&#128197;</span>
+        실행 원칙 — 정기평가 실시 주기
+        <span class="n-arrow">&#9660;</span>
+      </div>
+      <div class="notice-body"><div class="notice-body-inner">
+        <ul>
+          <li><strong>정기 위험성평가</strong> — 연 2회 이상 실시 (상반기·하반기 각 1회 이상)</li>
+          <li>직전 정기평가일로부터 6개월 이내 재실시 원칙</li>
+          <li>참여자/평가결과 공유 서명록은 평가일자 전·후 진행, 개인 출근일자와 일치해야 함</li>
+          <li>1인 근무 매장이라도 필수 실행</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- QR 카드 — 최하단 배치 -->
+    <div class="qr-card">
+      <img src="assets/qr-code.png" alt="가이드 앱 접속 QR 코드" class="qr-img">
+      <div class="qr-info">
+        <div class="qr-title">모바일로 열기</div>
+        <div class="qr-desc">카메라로 QR을 스캔하면 이 가이드를 휴대폰에서 바로 열 수 있습니다.</div>
+        <div class="qr-url" id="qrUrl">sky5224122-jpg.github.io/daiso-risk-guide-regular</div>
+        <button class="qr-copy-btn" onclick="copyGuideUrl()" id="qrCopyBtn">주소 복사</button>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <strong>안전보건팀</strong> &middot; 인사총무본부 기업문화관리부문<br>
+      2026년 하반기 정기 위험성평가 작성 가이드
+    </div>
+  </div>
+
+  <!-- ═══ LOGIN ═══ -->
+  <div class="page" id="page-login">
+    <button class="back-btn" onclick="goPage('home')">&larr; 메인으로</button>
+
+    <div class="section-eyebrow">STEP 01</div>
+    <div class="section-title">접속 방법</div>
+    <div class="section-desc">QR 스캔 또는 PC 링크로 접속하여 로그인합니다.</div>
+
+    <div class="step-detail">
+      <div class="step-detail-header">
+        <div class="step-num">1</div>
+        <div class="step-detail-title">앱 접속</div>
+      </div>
+      <div class="step-detail-body">
+        <ul>
+          <li><strong>PC (권장)</strong> — 소속 영업부에 해당하는 주소를 브라우저에 입력 (아래 표 참고)</li>
+          <li><strong>모바일</strong> — 휴대폰 카메라로 소속 영업부 QR 코드 스캔 후 링크 열기</li>
+        </ul>
+        <div class="info-box warn mt-8">
+          <span class="ib-icon">&#9888;&#65039;</span>
+          <div>정기평가는 <strong>소속 영업부에 따라 접속 주소(V2~V6)가 다릅니다</strong>. 본인 매장의 영업부를 확인한 뒤 해당 주소로 접속하세요.</div>
+        </div>
+        <table class="penalty-table">
+          <tr><th>영업부</th><th>접속 주소</th></tr>
+          <tr><td>인천영업부 · 경남영업부</td><td><code style="font-size:12px">asung-daiso-risk-v2.web.app</code></td></tr>
+          <tr><td>강북영업부 · 충청영업부</td><td><code style="font-size:12px">asung-daiso-risk-v3.web.app</code></td></tr>
+          <tr><td>강남/구리영업부 · 경북영업부</td><td><code style="font-size:12px">asung-daiso-risk-v4.web.app</code></td></tr>
+          <tr><td>관악/평택/안산영업부 · 강원영업부</td><td><code style="font-size:12px">asung-daiso-risk-v5.web.app</code></td></tr>
+          <tr><td>호남영업부 · 수원/용인영업부</td><td><code style="font-size:12px">asung-daiso-risk-v6.web.app</code></td></tr>
+        </table>
+        <div class="info-box info mt-8">
+          <span class="ib-icon">&#128161;</span>
+          <div>위험성평가는 내용이 방대하므로 <strong>PC(웹)로 작성하는 것을 권장</strong>합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-detail">
+      <div class="step-detail-header">
+        <div class="step-num">2</div>
+        <div class="step-detail-title">접속구분 선택</div>
+      </div>
+      <div class="step-detail-body">
+        <ul>
+          <li><strong>접속구분</strong> — 본사 / 매장 / 오픈지원 중 선택</li>
+          <li><strong>평가유형</strong> — <strong>"정기"</strong> 선택 (정기 위험성평가)</li>
+        </ul>
+        <div class="screenshot-frame narrow">
+          <span class="screenshot-badge">실제 화면</span>
+          <img src="assets/shot-login.png" alt="접속구분 선택 화면 — 본사, 매장, 오픈지원">
+          <div class="screenshot-caption">시스템 로그인 · 접속구분 선택 화면</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-detail">
+      <div class="step-detail-header">
+        <div class="step-num">3</div>
+        <div class="step-detail-title">로그인</div>
+      </div>
+      <div class="step-detail-body">
+        <ul>
+          <li><strong>아이디</strong> — 빠른 계정 선택 또는 매장명 수기 입력<br>
+            <span style="font-size:12px;color:var(--c-text-muted)">관리감독자 계정: store- 뒤에 매장번호 (별도 배포 파일 참조)</span></li>
+          <li><strong>비밀번호</strong> — <code style="background:var(--c-primary-light);padding:4px 10px;border-radius:5px;font-weight:700;color:var(--c-primary)">s123456</code></li>
+          <li>아이디 저장이 필요하면 체크박스 선택</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-detail">
+      <div class="step-detail-header">
+        <div class="step-num">4</div>
+        <div class="step-detail-title">메인 화면 진입</div>
+      </div>
+      <div class="step-detail-body">
+        <ul>
+          <li>로그인 후 <strong>대시보드</strong> 화면이 표시됩니다</li>
+          <li>좌측 메뉴에서 <strong>위험성평가</strong>를 선택하여 평가 작성 시작</li>
+          <li>모바일에서는 좌측 상단 &#9776; 버튼으로 메뉴 열기</li>
+        </ul>
+        <div class="screenshot-frame wide">
+          <span class="screenshot-badge">실제 화면</span>
+          <img src="assets/shot-dashboard.png" alt="로그인 후 대시보드 화면">
+          <div class="screenshot-caption">로그인 후 진입하는 대시보드 — 법정 주기 점검 현황 자동 표시</div>
+        </div>
+        <div class="info-box success mt-8">
+          <span class="ib-icon">&#9989;</span>
+          <div><strong>"평가서 작성/제출"</strong> 버튼을 눌러 다음 단계로 넘어갑니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 다음 페이지 안내 -->
+    <div class="step-nav">
+      <div></div>
+      <button class="step-nav-btn next" onclick="goPage('guide')">
+        평가 작성 가이드
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ GUIDE (5-step) ═══ -->
+  <div class="page" id="page-guide">
+    <button class="back-btn" onclick="goPage('home')">&larr; 메인으로</button>
+
+    <div class="section-eyebrow">5-STEP PROCESS</div>
+    <div class="section-title">정기 위험성평가 작성 가이드</div>
+    <div class="section-desc">아래 5단계를 순서대로 진행합니다. 각 단계를 눌러 상세 안내를 확인하세요.</div>
+
+    <!-- Step flow chips -->
+    <div class="step-flow" id="stepFlow">
+      <span class="step-chip active" onclick="showStep(1)">① 기본정보</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(2)">② 조직도</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(3)">③ 교육/참여</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(4)">④ 평가표</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(5)">⑤ 승인</span>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-content" id="step-1">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-detail-title">기본정보 확인 및 입력</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">평가 시작 전 필수 입력사항</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <div class="info-box info">
+            <span class="ib-icon">&#128161;</span>
+            <div>본인 계정으로 로그인 시 매장 정보가 <strong>자동 입력</strong>됩니다. 매장명만 넣으면 나머지는 자동 완성됩니다.</div>
+          </div>
+          <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">확인/입력 항목</h4>
+          <ul>
+            <li><strong>평가 실시일</strong> — 필수 입력
+              <br><span style="font-size:12px;color:var(--c-text-muted)">정기평가: 직전 정기평가일로부터 6개월 이내(연 2회 이상) 날짜로 작성</span></li>
+            <li><strong>관리감독자(점장)</strong> — 자동 입력 확인</li>
+            <li><strong>근무 인원수</strong> — 수기 입력 필수</li>
+            <li><strong>평가유형</strong> — <strong>"정기"</strong> 선택 필수</li>
+          </ul>
+          <div class="info-box warn mt-16">
+            <span class="ib-icon">&#9888;&#65039;</span>
+            <div><strong>*</strong> 표시 항목은 필수 입력입니다. 미입력 시 다음 단계로 넘어가지 않습니다.</div>
+          </div>
+
+          <div class="step-nav">
+            <div></div>
+            <button class="step-nav-btn next" onclick="showStep(2)">
+              다음: ② 조직도
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-content" id="step-2" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-detail-title">조직도 · 실시계획서</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">위험성평가 사전 준비 단계</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">조직도 작성</h4>
+          <ul>
+            <li>위험성평가 <strong>실시체계 조직도</strong>를 확인합니다</li>
+            <li><strong>참여근로자를 추가</strong>합니다 — 직원 전체를 작성
+              <br><span style="font-size:12px;color:var(--c-text-muted)">한 사람씩 입력 후 "추가" 클릭 → 하단부에 조직도 자동 생성</span></li>
+            <li><strong>1인 근무 매장이라도 입력 필수</strong></li>
+          </ul>
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">실시계획서</h4>
+          <ul>
+            <li>실시계획서를 확인하고 다른 직원에게도 안내합니다</li>
+            <li>TBM 시간을 활용하여 공유</li>
+            <li>크게 보기 및 다운로드 가능</li>
+          </ul>
+          <div class="info-box success mt-16">
+            <span class="ib-icon">&#128190;</span>
+            <div>참여근로자 추가 후 반드시 <strong>임시 저장</strong>을 눌러주세요.</div>
+          </div>
+
+          <div class="step-nav">
+            <button class="step-nav-btn prev" onclick="showStep(1)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: ① 기본정보
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(3)">
+              다음: ③ 교육/참여
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-content" id="step-3" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-detail-title">교육 / 근로자 참여</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">사전교육 및 전자서명 수집</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">&#9312; 전자서명 수집</h4>
+          <div class="info-box danger">
+            <span class="ib-icon">&#128680;</span>
+            <div><strong>2가지 서명 모두 필수</strong><br>① 근로자 참여 서명 &nbsp; ② 평가결과 공유 서명<br>점장은 두 가지를 모두 발송하고, 직원도 2개 모두 서명해야 합니다.</div>
+          </div>
+          <ul>
+            <li>매장 점장이 기본 정보 입력 후 <strong>주소를 복사</strong>하여 카카오톡으로 직원에게 배포</li>
+            <li>전자서명 또는 수기 작성 중 편한 방법으로 제출</li>
+            <li>매장명은 자동 생성, <strong>사번/이름 입력 후 서명일자는 반드시 출근한 날</strong> 입력</li>
+          </ul>
+          <div class="screenshot-frame narrow">
+            <span class="screenshot-badge">실제 화면</span>
+            <img src="assets/shot-signature.png" alt="근로자 참여 전자서명 화면">
+            <div class="screenshot-caption">직원이 공유 링크에서 보는 근로자 참여 전자서명 화면</div>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">&#9313; 사전교육 기록</h4>
+          <ul>
+            <li>교육 방식 선택: <span class="badge badge-blue">TBM</span> <span class="badge badge-blue">집합교육</span> <span class="badge badge-blue">게시공유</span> <span class="badge badge-blue">기타</span></li>
+            <li>TBM이 기본 적용됩니다</li>
+            <li>좌측 하부 <strong>사전교육 완료 확인</strong> 클릭</li>
+            <li><strong>교육일자는 실질적으로 교육한 날짜</strong> 기록</li>
+          </ul>
+          <div class="info-box warn mt-16">
+            <span class="ib-icon">&#9888;&#65039;</span>
+            <div><strong>교육일자 주의</strong> — 평가일 이전에 교육을 실시해야 합니다.<br>
+            예) 평가일 2026.10.30 → 교육일자 2026.10.22~10.27 사이</div>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">&#9314; 사진 및 서명록 첨부</h4>
+          <ul>
+            <li>참여 확인 사진과 결과 공유 사진은 <strong>누락 없이 첨부</strong></li>
+            <li>수기 작성 시: 좌측 "문서·자료"에서 서명록 출력 → 자필 서명 후 사진 첨부</li>
+            <li>현장 사진 및 매장 고유 위험정보 함께 확인</li>
+          </ul>
+          <div class="info-box info mt-8">
+            <span class="ib-icon">&#128172;</span>
+            <div>직원에게 위험요소가 없는지, 평소 위험하다고 생각하는 것이 없는지 <strong>의견을 청취 후 자필 서명</strong>하여 서명록을 첨부합니다.</div>
+          </div>
+
+          <div class="step-nav">
+            <button class="step-nav-btn prev" onclick="showStep(2)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: ② 조직도
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(4)">
+              다음: ④ 평가표
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-content" id="step-4" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-detail-title">평가표 작성</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">JSA 기반 위험요인 기록</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">작성 전 준수사항</h4>
+          <ul>
+            <li>관리감독자는 준수사항을 확인 후 <strong>전자서명 실시</strong></li>
+            <li>전자서명을 완료한 후 "평가표 작성" 클릭하여 평가 진행</li>
+          </ul>
+          <div class="info-box warn mt-8">
+            <span class="ib-icon">&#9888;&#65039;</span>
+            <div>전자서명을 진행하지 않으면 다음으로 넘어가지 않습니다.</div>
+          </div>
+          <div class="screenshot-frame wide">
+            <span class="screenshot-badge">실제 화면</span>
+            <img src="assets/shot-compliance.png" alt="관리감독자 평가 준수사항 확인 화면">
+            <div class="screenshot-caption">관리감독자 평가 준수사항 확인 및 전자서명 화면</div>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">평가 기법: JSA + 상·중·하</h4>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+            <span class="risk-high">상 — 사망·중대재해 가능성, 즉시 개선</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+            <span class="risk-mid">중 — 부상·질병 가능성, 개선 계획 수립</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+            <span class="risk-low">하 — 경미한 위험, 현재 안전조치 적정</span>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">16개 작업공정 순서</h4>
+          <ul>
+            <li>정기평가표는 <strong>16개 작업공정</strong> 순서로 구성되어 있습니다 (예: 출근·근무복 착용·보호구 점검 → 매장 오픈 준비 → … 순)</li>
+            <li>화면 상단의 <strong>공정 순서 스트립(칩)</strong>을 클릭하면 해당 공정으로 바로 이동합니다</li>
+            <li>각 공정 헤더에 "OO개 항목"이 표시되므로, 공정별로 빠짐없이 확인 후 다음 공정으로 이동</li>
+          </ul>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">작성 요령</h4>
+          <ul>
+            <li><strong>적용/미적용 선택</strong> — 미해당 시 "미해당" 클릭</li>
+            <li>위험성 "하"인 경우 다음 항목으로 자동 이동</li>
+            <li>위험성 "상·중"인 경우:
+              <br>— 개선전/후 사진 첨부 (가능 시)
+              <br>— 개선대책/실행방안 작성 (기작성분 활용 가능)
+              <br>— 개선예정일 / 개선후 위험성 / 완료일 작성</li>
+            <li>16개 공정에 걸쳐 <strong>빠짐없이</strong> 위험요소를 확인하여 작성</li>
+            <li>막연하게 쓰지 말고 <strong>실제 작업 기준</strong>으로 작성</li>
+          </ul>
+          <div class="screenshot-frame wide">
+            <span class="screenshot-badge">실제 화면</span>
+            <img src="assets/shot-table.png" alt="JSA 위험성평가표 실제 작성 화면">
+            <div class="screenshot-caption">PC 화면 기준 JSA 위험성평가표 — 작업순서·유해위험요인·개선대책 입력</div>
+          </div>
+          <div class="info-box success mt-16">
+            <span class="ib-icon">&#128190;</span>
+            <div>평가 중간/실시 후 <strong>임시 저장 필수</strong>! 다른 항목으로 넘어가기 전 반드시 눌러주세요.</div>
+          </div>
+
+          <div class="notice-collapsible mt-16" onclick="event.stopPropagation();this.classList.toggle('open')">
+            <div class="notice-header">
+              <span class="n-icon">&#128214;</span>
+              개선이 어려운 경우 안내
+              <span class="n-arrow">&#9660;</span>
+            </div>
+            <div class="notice-body"><div class="notice-body-inner">
+              <ul>
+                <li>개선이 안 될 경우 개선후 위험성은 <strong>개선전과 동일하게</strong> 두면 됩니다</li>
+                <li>개선 예정일과 완료일은 <strong>다른 날로 지정</strong>하는 것이 좋습니다</li>
+                <li>개선 비용 발생 시 하단 비고란에 금액 기재<br>
+                  <span style="font-size:12px;color:var(--c-text-muted)">예) 사다리 교체 _53,000원</span></li>
+                <li>"하" 상태라도 위험성이 없다는 것이 아닙니다 — 미약한 위험이라도 표시하여 직원이 숙지할 수 있도록 관리</li>
+              </ul>
+            </div></div>
+          </div>
+          <div class="info-box danger mt-16">
+            <span class="ib-icon">&#128680;</span>
+            <div>
+              <strong>평가결과 공유 서명 — 필수</strong><br>
+              평가표 작성 완료 후, 결과를 직원과 함께 공유한 뒤 <strong>평가결과 공유 전자서명</strong>을 반드시 수집하세요.<br>
+              <strong>미진행 시 승인 단계로 넘어가지 않습니다.</strong><br>
+              <span style="font-size:12px;color:inherit;opacity:0.85">작성 및 승인 완료 후 엑셀 다운로드하여 매장 보관</span>
+            </div>
+          </div>
+
+          <div class="step-nav">
+            <button class="step-nav-btn prev" onclick="showStep(3)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: ③ 교육/참여
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(5)">
+              다음: ⑤ 승인
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-content" id="step-5" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-detail-title">제출 및 승인</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">작성 후 마무리하는 방법</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <ul>
+            <li>모든 항목 작성 완료 후 사진 첨부 확인</li>
+            <li><strong>임시저장</strong> 후 <strong>제출</strong> 버튼 클릭</li>
+            <li>파트장이 해당 매장 제출 확인 후 승인/반려</li>
+            <li>안전보건팀 최종 승인 완료 후 <strong>결과 출력</strong></li>
+          </ul>
+          <div class="info-box success mt-16">
+            <span class="ib-icon">&#128424;</span>
+            <div>최종 승인 완료 후 <strong>결과를 출력하여 매장에 비치</strong>하세요. (5년 보관)</div>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin:16px 0 8px">승인 흐름</h4>
+          <div class="approval-flow">
+            <div class="approval-step">
+              <div class="approval-dot blue">&#128221;</div>
+              <div class="approval-content">
+                <h4>평가서 작성·제출</h4>
+                <p>관리감독자(점장)가 모든 단계 작성 후 제출</p>
+              </div>
+            </div>
+            <div class="approval-step">
+              <div class="approval-dot amber">&#128270;</div>
+              <div class="approval-content">
+                <h4>파트장 확인</h4>
+                <p>담당 파트장이 내용 검토 후 승인 또는 반려<br><span style="font-size:11px;color:var(--c-text-muted)">반려 시 보완 후 다시 제출</span></p>
+              </div>
+            </div>
+            <div class="approval-step">
+              <div class="approval-dot green">&#9989;</div>
+              <div class="approval-content">
+                <h4>안전보건팀 최종 확인</h4>
+                <p>안전보건팀이 최종 검토 후 승인 완료</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-nav">
+            <button class="step-nav-btn prev" onclick="showStep(4)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: ④ 평가표
+            </button>
+            <button class="step-nav-btn next" onclick="goPage('approval')">
+              승인·유의사항 보기
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ APPROVAL ═══ -->
+  <div class="page" id="page-approval">
+    <button class="back-btn" onclick="goPage('home')">&larr; 메인으로</button>
+
+    <div class="section-eyebrow">APPROVAL</div>
+    <div class="section-title">승인 흐름 · 유의사항</div>
+    <div class="section-desc">마지막 확인과 주의해야 할 사항입니다.</div>
+
+    <div class="screenshot-frame wide">
+      <img src="assets/shot-approval-flow.png" alt="3단계 승인 프로세스 — 관리감독자, 관리자, 안전보건팀">
+      <div class="screenshot-caption">3단계 승인 프로세스 한눈에 보기</div>
+    </div>
+
+    <div class="step-detail mb-16">
+      <div class="step-detail-header">
+        <div class="step-num" style="background:var(--c-success)">&#10003;</div>
+        <div class="step-detail-title">승인 흐름</div>
+      </div>
+      <div class="step-detail-body">
+        <div class="approval-flow">
+          <div class="approval-step">
+            <div class="approval-dot blue">1</div>
+            <div class="approval-content">
+              <h4>평가서 작성·제출</h4>
+              <p>관리감독자(점장)가 5단계 모두 완료 후 제출</p>
+            </div>
+          </div>
+          <div class="approval-step">
+            <div class="approval-dot amber">2</div>
+            <div class="approval-content">
+              <h4>파트장 확인·승인</h4>
+              <p>매장에서 제출이 완료되면 확인 후 승인/반려</p>
+            </div>
+          </div>
+          <div class="approval-step">
+            <div class="approval-dot green">3</div>
+            <div class="approval-content">
+              <h4>안전보건팀 최종 승인</h4>
+              <p>최종 검토 후 승인 완료 → 결과 출력 가능</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:18px">유의사항</div>
+    <div class="card mb-8">
+      <div style="font-size:14px;color:var(--c-text-secondary);line-height:1.7">
+        <ul style="padding-left:18px">
+          <li><strong>실제 현장 기준</strong>으로 정확하게 작성</li>
+          <li>누락 항목 없이 입력 — 미해당 시 "미해당" 클릭</li>
+          <li>반려 시 <strong>보완 후 다시 제출</strong></li>
+          <li>제출 후 <strong>상태를 꼭 확인</strong></li>
+          <li>최종 승인 완료 후 <strong>결과 출력 → 매장 비치 (5년 보관)</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box info">
+      <span class="ib-icon">&#128172;</span>
+      <div>문의사항은 <strong>안전보건팀</strong> 또는 <strong>담당 파트장</strong>에게 연락하세요.</div>
+    </div>
+  </div>
+
+  <!-- ═══ FAQ ═══ -->
+  <div class="page" id="page-faq">
+    <button class="back-btn" onclick="goPage('home')">&larr; 메인으로</button>
+
+    <div class="section-eyebrow">FAQ</div>
+    <div class="section-title">자주 묻는 질문</div>
+    <div class="section-desc">총 10개 질문에 대한 답변입니다.</div>
+
+    <div id="faqList">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q1</span>QR이 열리지 않아요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">인터넷 연결을 확인하고 다시 스캔해 주세요. 그래도 안 되면 PC에서 직접 주소를 입력하거나 관리자에게 문의하세요.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q2</span>모바일 작성이 어려워요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">위험성평가는 내용이 방대하므로 가급적 <strong>PC(컴퓨터)로 작성</strong>해 주세요. PC와 모바일 모두 같은 주소를 사용합니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q3</span>해당 항목이 없어요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>"작업 단계 추가하기"</strong> 클릭 후 추가해 주세요. 작업공정마다 추가 기재가 가능합니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q4</span>다음으로 넘어가지 않아요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">필수 입력/등록 사항을 확인해 주세요 (서명록, 일자 등). 전자서명 미진행 시 다음 단계로 넘어가지 않습니다. 다른 항목으로 넘어가기 전 <strong>임시저장</strong>을 반드시 눌러주세요.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q5</span>재접속 했는데 기존 작성 내용이 없어요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">작성 중 <strong>임시저장을 하지 않으면 내용이 유실</strong>될 수 있습니다. 항목을 변경하기 전에 반드시 임시저장을 눌러주세요.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q6</span>위험성이 중/상인데 개선하지 못했어요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">개선후 위험성을 <strong>그대로 중/상으로 유지</strong>해 주세요. 위험성이 있음을 표시하는 것이 중요합니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q7</span>내용이 우리 매장과 맞지 않아요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">기작성된 내용을 <strong>수정·추가하여 작성</strong>해 주세요. 모든 항목은 변경 가능합니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q8</span>개선예정일을 모르겠어요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">개선이 어려워 못하는 항목은 <strong>날짜를 비워 놓으세요</strong>. 개선 예정일과 완료일은 다른 날로 지정하는 것이 좋습니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q9</span>항목이 너무 많아요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">다이소 전체에서 재해가 발생한 항목은 <strong>필수 조건</strong>이라 양해 부탁드립니다. 미해당 항목은 "미해당"을 클릭하면 빠르게 넘어갈 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><span class="q-badge">Q10</span>평가표에 해당하는 항목이 없어요<span class="q-arrow">&#9660;</span></div>
+        <div class="faq-a"><div class="faq-a-inner">작업공정마다 있는 <strong>"작업 단계 추가하기"</strong>에서 추가 기재해 주세요.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SEARCH ═══ -->
+  <div class="page" id="page-search">
+    <div class="section-eyebrow">SEARCH</div>
+    <div class="section-title">궁금한 내용 검색</div>
+    <div class="section-desc">키워드를 입력하면 관련 내용을 바로 찾아드립니다.</div>
+
+    <div class="search-wrap">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="예: 서명, 임시저장, 교육일자..." oninput="doSearch(this.value)">
+    </div>
+
+    <div id="searchTags" style="margin-bottom:16px">
+      <span class="search-tag" onclick="doSearch('서명');$('searchInput').value='서명'">서명</span>
+      <span class="search-tag" onclick="doSearch('임시저장');$('searchInput').value='임시저장'">임시저장</span>
+      <span class="search-tag" onclick="doSearch('교육');$('searchInput').value='교육'">교육</span>
+      <span class="search-tag" onclick="doSearch('승인');$('searchInput').value='승인'">승인</span>
+      <span class="search-tag" onclick="doSearch('사진');$('searchInput').value='사진'">사진</span>
+      <span class="search-tag" onclick="doSearch('로그인');$('searchInput').value='로그인'">로그인</span>
+      <span class="search-tag" onclick="doSearch('개선');$('searchInput').value='개선'">개선</span>
+    </div>
+
+    <div id="searchResults"></div>
+    <div id="searchEmpty">검색어를 입력하거나 위 태그를 눌러보세요.</div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="화면 확대보기">
+  </div>
+
+  <!-- Bottom nav (mobile only) -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="goPage('home')">
+      <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/></svg>
+      <span>메인</span>
+    </button>
+    <button class="nav-btn" id="nav-guide" onclick="goPage('guide')">
+      <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+      <span>작성가이드</span>
+    </button>
+    <button class="nav-btn" id="nav-faq" onclick="goPage('faq')">
+      <svg viewBox="0 0 24 24"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span>FAQ</span>
+    </button>
+    <button class="nav-btn" id="nav-search" onclick="goPage('search')">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <span>검색</span>
+    </button>
+  </nav>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// ═══ 최초 접속 필수 영상 ═══
+const mandatoryVideoSessionKey = 'daisoRiskGuideVideoWatchedV1';
+
+function initMandatoryGuideVideo() {
+  const gate = $('mandatoryVideoGate');
+  const video = $('mandatoryGuideVideo');
+  const status = $('mandatoryVideoStatus');
+  const continueBtn = $('mandatoryContinueBtn');
+  if (!gate || !video || !status || !continueBtn) return;
+
+  let watchedInSession = false;
+  try {
+    watchedInSession = sessionStorage.getItem(mandatoryVideoSessionKey) === '1';
+  } catch (e) {}
+  if (watchedInSession) return;
+
+  let maxWatchedTime = 0;
+  let correctingSeek = false;
+  gate.classList.add('open');
+  gate.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('guide-video-locked');
+
+  video.addEventListener('timeupdate', () => {
+    if (!video.seeking) maxWatchedTime = Math.max(maxWatchedTime, video.currentTime);
+    const remaining = Math.max(0, Math.ceil((video.duration || 25) - video.currentTime));
+    status.textContent = remaining > 0
+      ? '필수 시청 중 · ' + remaining + '초 남음'
+      : '시청이 완료되었습니다.';
+  });
+
+  video.addEventListener('seeking', () => {
+    if (correctingSeek || video.currentTime <= maxWatchedTime + 0.75) return;
+    correctingSeek = true;
+    video.currentTime = maxWatchedTime;
+    status.textContent = '필수 영상은 순서대로 끝까지 시청해 주세요.';
+    window.setTimeout(() => { correctingSeek = false; }, 0);
+  });
+
+  video.addEventListener('ratechange', () => {
+    if (video.playbackRate !== 1) video.playbackRate = 1;
+  });
+
+  video.addEventListener('ended', () => {
+    maxWatchedTime = video.duration || 25;
+    continueBtn.disabled = false;
+    continueBtn.textContent = '가이드 시작';
+    status.textContent = '시청이 완료되었습니다. 가이드를 시작할 수 있습니다.';
+    try { sessionStorage.setItem(mandatoryVideoSessionKey, '1'); } catch (e) {}
+    continueBtn.focus();
+  });
+
+  continueBtn.addEventListener('click', () => {
+    if (continueBtn.disabled) return;
+    gate.classList.remove('open');
+    gate.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('guide-video-locked');
+    video.pause();
+    $('quickVideoTitle')?.scrollIntoView({block:'start'});
+  });
+
+  video.play().catch(() => {
+    status.textContent = '재생 버튼을 눌러 25초 필수 영상을 시청해 주세요.';
+  });
+}
+
+// ═══ NAVIGATION ═══
+const pageMap = {home:'메인',login:'접속 방법',guide:'작성 가이드',approval:'승인·유의사항',faq:'FAQ',search:'검색'};
+const navMap = {home:'nav-home',guide:'nav-guide',faq:'nav-faq',search:'nav-search',login:'nav-home',approval:'nav-home'};
+
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = $('page-' + id);
+  if (page) page.classList.add('active');
+
+  // Mobile bottom nav
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const navId = navMap[id];
+  if (navId) $(navId).classList.add('active');
+
+  // PC sidebar nav
+  document.querySelectorAll('.pc-nav-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.page === id);
+  });
+
+  $('topBarTitle').textContent = pageMap[id] || '실행 가이드';
+  window.scrollTo({top: 0, behavior: 'instant'});
+}
+
+// ═══ STEP FLOW ═══
+let currentStep = 1;
+function showStep(n) {
+  currentStep = n;
+  for (let i = 1; i <= 5; i++) {
+    const el = $('step-' + i);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  }
+  const chips = document.querySelectorAll('#stepFlow .step-chip');
+  chips.forEach((c, idx) => {
+    c.classList.remove('active', 'done');
+    if (idx + 1 === n) c.classList.add('active');
+    else if (idx + 1 < n) c.classList.add('done');
+  });
+  // Scroll chip into view
+  const activeChip = document.querySelector('#stepFlow .step-chip.active');
+  if (activeChip) activeChip.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+  window.scrollTo({top: document.querySelector('#stepFlow').offsetTop - 70, behavior:'smooth'});
+}
+
+// ═══ SIDE MENU ═══
+function openSide() { $('sideMenu').classList.add('open'); }
+function closeSide() { $('sideMenu').classList.remove('open'); }
+
+// ═══ Mobile menu button visibility ═══
+function updateMobileMenu() {
+  const btn = $('mobileMenuBtn');
+  if (btn) btn.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+}
+updateMobileMenu();
+window.addEventListener('resize', updateMobileMenu);
+
+// ═══ LIGHTBOX ═══
+function openLightbox(src) {
+  $('lightboxImg').src = src;
+  $('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  $('lightbox').classList.remove('open');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.screenshot-frame img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src));
+  });
+});
+
+// ═══ QR COPY ═══
+function copyGuideUrl() {
+  const url = 'https://sky5224122-jpg.github.io/daiso-risk-guide-regular/';
+  const btn = $('qrCopyBtn');
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = '복사됨!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+  } else {
+    fallbackCopy(url, done);
+  }
+}
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+// ═══ SEARCH ═══
+const searchData = [
+  {title:'QR 접속', text:'휴대폰 카메라로 QR 코드를 스캔하여 접속합니다. PC에서는 주소를 직접 입력합니다.', page:'login'},
+  {title:'로그인 방법', text:'접속구분 선택 후 아이디와 비밀번호(s123456)를 입력합니다. 관리감독자 계정은 store- 뒤에 매장번호입니다.', page:'login'},
+  {title:'기본정보 입력', text:'평가 실시일, 관리감독자(점장), 근무 인원수를 입력합니다. 매장명 입력 시 자동 완성됩니다.', page:'guide'},
+  {title:'조직도 작성', text:'참여근로자를 한 사람씩 추가합니다. 1인 근무 매장이라도 필수 입력입니다.', page:'guide'},
+  {title:'실시계획서', text:'실시계획서를 확인하고 TBM 시간을 활용하여 직원에게 안내합니다.', page:'guide'},
+  {title:'전자서명 수집', text:'근로자 참여 서명과 평가결과 공유 서명 2가지를 모두 받아야 합니다. 카카오톡으로 링크를 배포합니다.', page:'guide'},
+  {title:'수기 서명', text:'문서·자료에서 서명록을 출력하여 자필 서명 후 사진으로 첨부합니다.', page:'guide'},
+  {title:'교육일자', text:'교육일자는 평가일 이전에 실시한 날짜로 기록합니다. 예) 평가일 10.30 → 교육일 10.22~10.27', page:'guide'},
+  {title:'사전교육', text:'TBM, 집합교육, 게시공유, 기타 중 교육 방식을 선택합니다. TBM이 기본 적용됩니다.', page:'guide'},
+  {title:'사진 첨부', text:'참여 확인 사진과 결과 공유 사진은 누락 없이 첨부합니다. 개선전/후 사진도 가능 시 첨부합니다.', page:'guide'},
+  {title:'평가표 작성', text:'JSA 기반으로 위험요인을 기록합니다. 최소 10건 이상 발굴하여 작성합니다.', page:'guide'},
+  {title:'위험성 등급', text:'상: 사망·중대재해 가능성. 중: 부상·질병 가능성. 하: 경미한 위험, 현재 안전조치 적정.', page:'guide'},
+  {title:'임시저장', text:'다른 항목으로 넘어가기 전 반드시 임시저장을 눌러야 합니다. 미저장 시 내용이 유실될 수 있습니다.', page:'guide'},
+  {title:'개선대책', text:'기작성분이 매장 상황과 일치하면 그대로 진행하고, 변경 필요 시 새로 작성합니다. 개선 비용은 비고란에 기재합니다.', page:'guide'},
+  {title:'승인 흐름', text:'평가서 작성·제출 → 파트장 확인·승인 → 안전보건팀 최종 승인. 반려 시 보완 후 다시 제출합니다.', page:'approval'},
+  {title:'결과 출력', text:'최종 승인 완료 후 결과를 출력하여 매장에 비치합니다. 5년간 보관 의무가 있습니다.', page:'approval'},
+  {title:'과태료', text:'위험성평가 미실시 시 1,000만 원, 근로자 참여 미보장 시 500만 원, 기록 의무 위반 시 300만 원 이하 과태료가 부과됩니다.', page:'home'},
+  {title:'작업 단계 추가', text:'평가표에 해당 항목이 없을 경우 "작업 단계 추가하기"를 클릭하여 추가 기재합니다.', page:'guide'},
+  {title:'PC 작성 권장', text:'위험성평가는 내용이 방대하므로 모바일보다 PC(웹)로 작성하는 것을 권장합니다.', page:'login'},
+  {title:'엑셀 다운로드', text:'작성 및 승인 완료 후 엑셀 다운로드하여 매장에 보관합니다.', page:'guide'}
+];
+
+function doSearch(q) {
+  const results = $('searchResults');
+  const empty = $('searchEmpty');
+  if (!q.trim()) {
+    results.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  const lower = q.toLowerCase();
+  const matched = searchData.filter(d => d.title.toLowerCase().includes(lower) || d.text.toLowerCase().includes(lower));
+  if (!matched.length) {
+    results.innerHTML = '<div style="text-align:center;padding:30px;color:var(--c-text-muted)">검색 결과가 없습니다.</div>';
+    return;
+  }
+  results.innerHTML = matched.map(d => {
+    const highlighted = d.text.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<mark>$1</mark>');
+    return '<div class="search-result" onclick="goPage(\'' + d.page + '\')">' +
+      '<div class="search-result-title">' + d.title + '</div>' +
+      '<div class="search-result-text">' + highlighted + '</div></div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMandatoryGuideVideo();
+  $('searchEmpty').style.display = 'block';
+});
+</script>
+</body>
+</html>
