@@ -658,9 +658,77 @@
       border: 1px solid #BFDBFE;
     }
 
+
+    /* ===== 동영상 강제 시청 인트로 오버레이 ===== */
+    #intro-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10, 20, 40, 0.97);
+      z-index: 9999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 20px;
+      transition: opacity 0.6s ease;
+    }
+    #intro-overlay.hidden { opacity: 0; pointer-events: none; }
+    .intro-box {
+      width: 100%; max-width: 860px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 20px;
+    }
+    .intro-title { color:#fff; font-size:22px; font-weight:800; letter-spacing:-0.3px; text-align:center; }
+    .intro-title span { color:#60a5fa; }
+    .intro-subtitle { color:#94a3b8; font-size:14px; text-align:center; margin-top:-12px; }
+    .intro-video-wrap {
+      width:100%; border-radius:16px; overflow:hidden;
+      box-shadow:0 25px 50px rgba(0,0,0,0.5); background:#000;
+    }
+    .intro-video-wrap video { width:100%; display:block; }
+    .intro-progress-row { width:100%; display:flex; align-items:center; gap:14px; }
+    .intro-bar-bg { flex:1; height:8px; background:rgba(255,255,255,0.15); border-radius:99px; overflow:hidden; }
+    .intro-bar-fill { height:100%; width:0%; background:linear-gradient(90deg,#3b82f6,#60a5fa); border-radius:99px; transition:width 0.3s linear; }
+    .intro-time { color:#94a3b8; font-size:13px; font-weight:600; white-space:nowrap; min-width:80px; text-align:right; }
+    .intro-enter-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#2563eb; color:#fff; font-size:17px; font-weight:800;
+      padding:14px 36px; border:none; border-radius:12px; cursor:pointer;
+      transition:all 0.2s; box-shadow:0 8px 20px rgba(37,99,235,0.45);
+      font-family: inherit;
+    }
+    .intro-enter-btn:not(:disabled) { animation: pulseBtn 1.5s ease infinite; }
+    .intro-enter-btn:hover:not(:disabled) { background:#1d4ed8; transform:translateY(-2px); }
+    .intro-enter-btn:disabled { background:rgba(255,255,255,0.1); color:#475569; cursor:not-allowed; box-shadow:none; }
+    .intro-notice { color:#475569; font-size:13px; text-align:center; }
+    @keyframes pulseBtn {
+      0%,100% { box-shadow:0 8px 20px rgba(37,99,235,0.45); }
+      50% { box-shadow:0 8px 30px rgba(37,99,235,0.7); }
+    }
+    @media (max-width:600px) {
+      .intro-title { font-size:17px; }
+      .intro-enter-btn { font-size:15px; padding:12px 24px; }
+    }
   </style>
 </head>
 <body>
+  <!-- 동영상 강제 시청 인트로 오버레이 -->
+  <div id="intro-overlay">
+    <div class="intro-box">
+      <div class="intro-title">📋 위험성평가 가이드 <span>안내 영상</span>을 먼저 확인해 주세요</div>
+      <div class="intro-subtitle">영상을 끝까지 시청하시면 가이드 페이지로 이동할 수 있습니다.</div>
+      <div class="intro-video-wrap">
+        <video id="introVideo" playsinline controlsList="nodownload">
+          <source src="assets/quick-guide-35s.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="intro-progress-row">
+        <div class="intro-bar-bg"><div class="intro-bar-fill" id="introBarFill"></div></div>
+        <div class="intro-time" id="introTime">로딩 중...</div>
+      </div>
+      <button class="intro-enter-btn" id="introEnterBtn" disabled onclick="enterGuide()">
+        ⏳ 영상 시청 중...
+      </button>
+      <div class="intro-notice">※ 이 안내 영상은 위험성평가 작성법을 요약한 영상입니다.</div>
+    </div>
+  </div>
 
   <div class="mobile-header">
     <div class="brand-title">📘 정기 위험성평가 가이드</div>
@@ -1155,6 +1223,59 @@
           '<div class="search-result-text">' + highlighted + '</div></div>';
       }).join('');
     }
+
+    // ===== 동영상 강제 시청 인트로 로직 =====
+    (function() {
+      const overlay = document.getElementById('intro-overlay');
+      const video   = document.getElementById('introVideo');
+      const bar     = document.getElementById('introBarFill');
+      const timeEl  = document.getElementById('introTime');
+      const btn     = document.getElementById('introEnterBtn');
+      let videoEnded = false;
+      let lastAllowed = 0;
+
+      // 자동 재생 시도
+      video.muted = false;
+      video.play().catch(function() {
+        // 자동재생 차단 시 muted로 재시도
+        video.muted = true;
+        video.play().catch(function(){});
+      });
+
+      // 진행률 바 및 남은 시간 업데이트
+      video.addEventListener('timeupdate', function() {
+        if (!video.duration) return;
+        var pct = (video.currentTime / video.duration) * 100;
+        bar.style.width = pct.toFixed(1) + '%';
+        var remain = Math.ceil(video.duration - video.currentTime);
+        timeEl.textContent = remain > 0 ? remain + '초 남음' : '시청 완료!';
+      });
+
+      // 시청 완료 처리
+      video.addEventListener('ended', function() {
+        videoEnded = true;
+        bar.style.width = '100%';
+        timeEl.textContent = '✅ 시청 완료!';
+        btn.disabled = false;
+        btn.textContent = '✅ 가이드 바로 시작하기 →';
+      });
+
+      // 앞으로 건너뛰기 방지 (뒤로는 허용)
+      video.addEventListener('timeupdate', function() {
+        if (videoEnded) return;
+        if (video.currentTime > lastAllowed + 1.5) {
+          video.currentTime = lastAllowed;
+        } else {
+          lastAllowed = Math.max(lastAllowed, video.currentTime);
+        }
+      });
+
+      window.enterGuide = function() {
+        if (!videoEnded) return;
+        overlay.classList.add('hidden');
+        setTimeout(function() { overlay.style.display = 'none'; }, 700);
+      };
+    })();
   </script>
 </body>
 </html>
