@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
-OUTPUT = ASSETS / "quick-guide-25s.mp4"
+OUTPUT = ASSETS / "quick-guide-35s.mp4"
 POSTER = ASSETS / "quick-guide-poster.jpg"
 
 WIDTH = 1280
@@ -107,9 +107,9 @@ def make_slide(
         y = 274 + (370 - target.height) // 2
         canvas.paste(target, (x, y), rounded_mask(target.size, 14))
 
-        draw.text((510, 318), "먼저 접속구분을 선택합니다.", font=font(26, True), fill=TEXT)
+        draw.text((510, 318), "QR 코드로 서명을 진행합니다.", font=font(26, True), fill=TEXT)
         bullets = [
-            "본사 · 매장 · 오픈지원",
+            "QR 코드 스캔 후 접속",
             "평가유형은 '정기' 선택",
             "영업부에 맞는 접속 주소(V2~V6) 확인",
         ]
@@ -156,35 +156,46 @@ def build_video() -> None:
     slides = [
         make_slide(
             "STEP 1",
-            "접속구분과 평가유형 선택",
-            "본인 업무에 맞는 화면과 평가기간을 먼저 확인합니다.",
-            "shot-login.png",
-            portrait=True,
+            "기본정보 확인 및 입력",
+            "평가 시작 전 필수 사항인 실시일과 근무인원수를 입력합니다.",
+            "shot-step1-basic.png",
         ),
         make_slide(
             "STEP 2",
-            "기본정보 · 조직도 · 교육 입력",
-            "매장정보와 근무인원, 참여근로자, 사전교육 사진을 등록합니다.",
-            "shot-dashboard.png",
+            "참여근로자 추가 및 조직도 작성",
+            "평가에 참여하는 근로자 이름을 정확하게 추가합니다.",
+            "shot-step2-org.png",
         ),
         make_slide(
             "STEP 3",
-            "16개 공정 평가표 상·중·하 점검",
-            "공정 순서 칩으로 이동하며 위험요인, 개선대책, 현장사진을 확인합니다.",
-            "shot-table.png",
+            "사전 교육 실시 및 증빙",
+            "근로자들에게 사전 교육을 실시하고 증빙 사진을 등록합니다.",
+            "shot-step3-edu.png",
         ),
         make_slide(
             "STEP 4",
-            "근로자 · 관리감독자 전자서명",
-            "참여와 결과공유 서명을 각각 확인하여 증빙을 완성합니다.",
-            "shot-signature.png",
+            "참여근로자 서명 (QR코드)",
+            "QR코드나 서명 주소를 통해 근로자 자필 서명을 받습니다.",
+            "shot-step4-sign.png",
             portrait=True,
         ),
         make_slide(
             "STEP 5",
-            "최종제출 · 승인 · 인쇄/PDF",
-            "제출 상태와 승인 흐름을 확인하고 전체 결과를 보관합니다.",
-            "shot-approval-flow.png",
+            "작업 공정별 평가표 작성",
+            "주요 공정의 유해/위험요인을 파악하고 상/중/하로 평가합니다.",
+            "shot-step5-table.png",
+        ),
+        make_slide(
+            "STEP 6",
+            "결과공유 및 전자서명",
+            "체크리스트 확인 후 근로자들에게 결과공유 서명을 받습니다.",
+            "shot-step6-share.png",
+        ),
+        make_slide(
+            "STEP 7",
+            "최종제출 및 승인",
+            "관리감독자 제출 후 관리자와 안전보건팀의 최종 승인을 받습니다.",
+            "shot-step7-approval.png",
             closing=True,
         ),
     ]

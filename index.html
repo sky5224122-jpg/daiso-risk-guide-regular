@@ -428,11 +428,11 @@ img{max-width:100%;display:block}
 <div class="mandatory-video-gate" id="mandatoryVideoGate" role="dialog" aria-modal="true" aria-labelledby="mandatoryVideoTitle" aria-hidden="true">
   <div class="mandatory-video-dialog">
     <div class="mandatory-video-badge">&#9888;&#65039; 최초 접속 필수 시청</div>
-    <div class="mandatory-video-title" id="mandatoryVideoTitle">25초 실행 영상을 먼저 확인해 주세요</div>
+    <div class="mandatory-video-title" id="mandatoryVideoTitle">35초 실행 영상을 먼저 확인해 주세요</div>
     <div class="mandatory-video-desc">접속구분·평가유형 선택부터 전자서명, 최종제출, 승인, 인쇄/PDF까지의 필수 흐름입니다.</div>
     <div class="mandatory-video-wrap">
-      <video id="mandatoryGuideVideo" controls playsinline preload="auto" muted controlslist="nodownload noplaybackrate" poster="assets/quick-guide-poster.jpg" aria-label="필수 시청 위험성평가 25초 실행 영상">
-        <source src="assets/quick-guide-25s.mp4?v=20260729-mandatory" type="video/mp4">
+      <video id="mandatoryGuideVideo" controls playsinline preload="auto" muted controlslist="nodownload noplaybackrate" poster="assets/quick-guide-poster.jpg" aria-label="필수 시청 위험성평가 35초 실행 영상">
+        <source src="assets/quick-guide-35s.mp4?v=20260729-mandatory" type="video/mp4">
         현재 브라우저에서는 영상을 재생할 수 없습니다.
       </video>
     </div>
@@ -492,7 +492,7 @@ img{max-width:100%;display:block}
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <span class="hero-stat-num">5단계</span>
+          <span class="hero-stat-num">7단계</span>
           <span class="hero-stat-label">작성 프로세스</span>
         </div>
         <div class="hero-stat">
@@ -502,18 +502,18 @@ img{max-width:100%;display:block}
       </div>
     </div>
 
-    <!-- 25초 핵심 실행 영상 -->
+    <!-- 35초 핵심 실행 영상 -->
     <section class="quick-video-card" aria-labelledby="quickVideoTitle">
       <div class="quick-video-head">
         <div class="quick-video-icon" aria-hidden="true">&#9654;</div>
         <div>
-          <div class="quick-video-title" id="quickVideoTitle">25초 핵심 실행 영상</div>
+          <div class="quick-video-title" id="quickVideoTitle">35초 핵심 실행 영상</div>
           <div class="quick-video-desc">접속부터 전자서명·최종제출·승인·PDF까지 전체 흐름을 빠르게 확인합니다.</div>
         </div>
       </div>
       <div class="quick-video-wrap">
-        <video id="quickGuideVideo" controls playsinline preload="metadata" poster="assets/quick-guide-poster.jpg" aria-label="아성다이소 위험성평가 25초 핵심 실행 가이드">
-          <source src="assets/quick-guide-25s.mp4?v=20260729-mandatory" type="video/mp4">
+        <video id="quickGuideVideo" controls playsinline preload="metadata" poster="assets/quick-guide-poster.jpg" aria-label="아성다이소 위험성평가 35초 핵심 실행 가이드">
+          <source src="assets/quick-guide-35s.mp4?v=20260729-mandatory" type="video/mp4">
           현재 브라우저에서는 영상을 재생할 수 없습니다.
         </video>
       </div>
@@ -559,7 +559,7 @@ img{max-width:100%;display:block}
       <div class="menu-card" onclick="goPage('guide')">
         <div class="menu-card-icon">&#128203;</div>
         <div class="menu-card-title">평가 작성</div>
-        <div class="menu-card-desc">5단계 위험성평가<br>작성 가이드</div>
+        <div class="menu-card-desc">7단계 위험성평가<br>작성 가이드</div>
       </div>
       <div class="menu-card" onclick="goPage('approval')">
         <div class="menu-card-icon">&#9989;</div>
@@ -723,7 +723,7 @@ img{max-width:100%;display:block}
 
     <div class="section-eyebrow">5-STEP PROCESS</div>
     <div class="section-title">정기 위험성평가 작성 가이드</div>
-    <div class="section-desc">아래 5단계를 순서대로 진행합니다. 각 단계를 눌러 상세 안내를 확인하세요.</div>
+    <div class="section-desc">아래 7단계를 순서대로 진행합니다. 각 단계를 눌러 상세 안내를 확인하세요.</div>
 
     <!-- Step flow chips -->
         <div class="step-flow" id="stepFlow">
@@ -1473,7 +1473,7 @@ function initMandatoryGuideVideo() {
   });
 
   video.play().catch(() => {
-    status.textContent = '재생 버튼을 눌러 25초 필수 영상을 시청해 주세요.';
+    status.textContent = '재생 버튼을 눌러 35초 필수 영상을 시청해 주세요.';
   });
 }
 
