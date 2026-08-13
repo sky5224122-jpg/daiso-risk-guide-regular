@@ -707,6 +707,92 @@
       .intro-enter-btn { font-size:15px; padding:12px 24px; }
     }
   </style>
+  <style>
+    /* ===== 가이드 사이트 접속 QR 섹션 ===== */
+    .guide-qr-section {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      border-radius: 20px;
+      padding: 32px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 8px 30px rgba(30,58,138,0.25);
+    }
+    .guide-qr-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+      background: white;
+      padding: 8px;
+      flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+    .guide-qr-info { flex: 1; }
+    .guide-qr-info h3 {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .guide-qr-info p {
+      color: #93c5fd;
+      font-size: 14px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .guide-qr-url {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: monospace;
+      letter-spacing: 0.3px;
+      transition: background 0.2s;
+    }
+    .guide-qr-url:hover { background: rgba(255,255,255,0.25); }
+    .sidebar-qr-box {
+      margin: 16px 16px 0;
+      padding: 16px;
+      background: var(--c-primary-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .sidebar-qr-box img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+      image-rendering: pixelated;
+      display: block;
+      margin: 0 auto 8px;
+    }
+    .sidebar-qr-box .sq-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .sidebar-qr-box .sq-url {
+      font-size: 10px;
+      color: #3b82f6;
+      font-family: monospace;
+      word-break: break-all;
+      margin-top: 4px;
+    }
+    @media (max-width:768px) {
+      .guide-qr-section { flex-direction: column; text-align: center; }
+      .guide-qr-img { width: 140px; height: 140px; }
+    }
+  </style>
 </head>
 <body>
   <!-- 동영상 강제 시청 인트로 오버레이 -->
@@ -756,6 +842,13 @@
         <a class="nav-item" onclick="goPage('faq', this)">❓ 자주 묻는 질문 (FAQ)</a>
         <a class="nav-item" onclick="goPage('search', this)">🔍 통합 검색</a>
       </div>
+
+      <!-- 사이드바 가이드 QR -->
+      <div class="sidebar-qr-box">
+        <img src="assets/qr-guide-site.png" alt="가이드 사이트 QR">
+        <div class="sq-label">📱 모바일 가이드 접속</div>
+        <div class="sq-url">sky5224122-jpg.github.io/daiso-risk-guide-regular/</div>
+      </div>
     </div>
     
     <!-- Main Content -->
@@ -793,6 +886,16 @@
             <div class="menu-card-icon">🔑</div>
             <h3>접속 방법</h3>
             <p>배포된 전용 URL 주소와 계정 접속 방법을 안내합니다.</p>
+          </div>
+        </div>
+
+        <!-- 정기평가 가이드 사이트 QR 섹션 -->
+        <div class="guide-qr-section">
+          <img class="guide-qr-img" src="assets/qr-guide-site.png" alt="정기평가 가이드 QR">
+          <div class="guide-qr-info">
+            <h3>📱 이 가이드 사이트 QR코드</h3>
+            <p>아래 QR을 스캔하거나 링크를 클릭하면<br>이 정기평가 가이드 사이트에 바로 접속할 수 있습니다.<br>현장 직원에게 이 QR을 공유해 주세요.</p>
+            <a class="guide-qr-url" href="https://sky5224122-jpg.github.io/daiso-risk-guide-regular/" target="_blank">🔗 sky5224122-jpg.github.io/daiso-risk-guide-regular/</a>
           </div>
         </div>
       </div>
