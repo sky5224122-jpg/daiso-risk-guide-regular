@@ -586,6 +586,64 @@
       .step-actions { flex-direction: column; gap: 12px; }
       .btn-nav { width: 100%; justify-content: center; }
     }
+  
+    /* QR Cards */
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .qr-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .qr-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      border: 1px solid var(--c-border-light);
+    }
+    .qr-info h4 {
+      font-size: 18px;
+      color: var(--c-primary);
+      margin-bottom: 4px;
+    }
+    .qr-info p {
+      font-size: 14px;
+      color: var(--c-text-muted);
+      margin-bottom: 12px;
+    }
+    .qr-info a {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      background: var(--c-primary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .qr-info a:hover {
+      background: var(--c-primary-hover);
+    }
+    .pw-badge {
+      display: inline-block;
+      color: #1E3A8A;
+      font-weight: 900;
+      font-size: 1.2em;
+      background: #EFF6FF;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+    }
+
   </style>
 </head>
 <body>
@@ -623,16 +681,17 @@
       
       <!-- Home Page -->
       <div class="page active" id="page-home">
-        <div class="page-header">
-          <h1 class="page-title">위험성평가 실행 가이드</h1>
-          <p class="page-desc">안전한 매장을 만들기 위한 첫 걸음, 7단계 최신 가이드를 확인하세요.</p>
-        </div>
-        
         <div class="video-hero mb-8">
           <video controls poster="assets/quick-guide-poster.jpg" id="guideVideo">
             <source src="assets/quick-guide-35s.mp4" type="video/mp4">
           </video>
         </div>
+        <div class="page-header">
+          <h1 class="page-title">위험성평가 실행 가이드</h1>
+          <p class="page-desc">안전한 매장을 만들기 위한 첫 걸음, 7단계 최신 가이드를 확인하세요.</p>
+        </div>
+        
+        
         
         <div class="info-box info" style="margin-top:24px;">
           <span style="font-size:20px;">ℹ️</span>
@@ -667,9 +726,56 @@
           <div class="step-header" style="margin-bottom:0; padding-bottom:0; border:none;">
             <div class="step-number">1</div>
             <div>
-              <div class="step-title">접속 주소 확인 및 입력</div>
+              <div class="step-title">정기평가 권역별 접속 주소 확인 (V2~V7)</div>
+              <div class="step-subtitle">본인 영업부에 맞는 QR을 스캔하거나 주소를 클릭하세요.</div>
             </div>
           </div>
+          
+          <div class="qr-grid">
+            <div class="qr-card">
+              <img src="assets/qr-v2.png" alt="V2 QR Code">
+              <div class="qr-info">
+                <h4>V2. 인천/경남영업부</h4>
+                <a href="https://asung-daiso-risk-v2.web.app" target="_blank">V2 사이트 접속</a>
+              </div>
+            </div>
+            <div class="qr-card">
+              <img src="assets/qr-v3.png" alt="V3 QR Code">
+              <div class="qr-info">
+                <h4>V3. 강북/충청영업부</h4>
+                <a href="https://asung-daiso-risk-v3.web.app" target="_blank">V3 사이트 접속</a>
+              </div>
+            </div>
+            <div class="qr-card">
+              <img src="assets/qr-v4.png" alt="V4 QR Code">
+              <div class="qr-info">
+                <h4>V4. 강남구리/경북영업부</h4>
+                <a href="https://asung-daiso-risk-v4.web.app" target="_blank">V4 사이트 접속</a>
+              </div>
+            </div>
+            <div class="qr-card">
+              <img src="assets/qr-v5.png" alt="V5 QR Code">
+              <div class="qr-info">
+                <h4>V5. 관악평택안산/강원</h4>
+                <a href="https://asung-daiso-risk-v5.web.app" target="_blank">V5 사이트 접속</a>
+              </div>
+            </div>
+            <div class="qr-card">
+              <img src="assets/qr-v6.png" alt="V6 QR Code">
+              <div class="qr-info">
+                <h4>V6. 호남/수원용인영업부</h4>
+                <a href="https://asung-daiso-risk-v6.web.app" target="_blank">V6 사이트 접속</a>
+              </div>
+            </div>
+            <div class="qr-card">
+              <img src="assets/qr-v7.png" alt="V7 QR Code">
+              <div class="qr-info">
+                <h4>V7. 본사, 오픈지원부</h4>
+                <a href="https://asung-daiso-risk-v7.web.app" target="_blank">V7 사이트 접속</a>
+              </div>
+            </div>
+          </div>
+
           <div class="info-box success mt-4" style="margin-top:20px;">
             <span>💡</span>
             <div>작성 편의성과 가독성을 위해 가급적 <strong>PC(컴퓨터)</strong>를 통한 접속을 권장합니다.</div>
@@ -681,14 +787,15 @@
             <div class="step-number">2</div>
             <div>
               <div class="step-title">로그인</div>
-              <div class="step-subtitle">빠른 계정 선택 또는 직접 로그인</div>
+              <div class="step-subtitle">계정 아이디와 비밀번호 입력</div>
             </div>
           </div>
           <ul class="guide-list">
-            <li><strong>아이디</strong> — 직접 입력 시 <code>store-점포번호</code> 형식입니다.</li>
-            <li><strong>비밀번호</strong> — 기본 비밀번호 <code>s123456</code> 입니다.</li>
+            <li><strong>아이디</strong> — <code>store-점포번호</code> 형식입니다.</li>
+            <li><strong>비밀번호</strong> — <span class="pw-badge">s123456</span> 입니다.</li>
           </ul>
         </div>
+
       </div>
       
       <!-- Guide Page (7 Steps) -->
