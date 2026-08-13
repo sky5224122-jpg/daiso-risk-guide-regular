@@ -742,19 +742,23 @@ img{max-width:100%;display:block}
     <div class="section-desc">아래 5단계를 순서대로 진행합니다. 각 단계를 눌러 상세 안내를 확인하세요.</div>
 
     <!-- Step flow chips -->
-    <div class="step-flow" id="stepFlow">
-      <span class="step-chip active" onclick="showStep(1)">① 기본정보</span>
+        <div class="step-flow" id="stepFlow">
+      <span class="step-chip active" onclick="showStep(1)">기본정보</span>
       <span class="step-arrow">&#8250;</span>
-      <span class="step-chip" onclick="showStep(2)">② 조직도</span>
+      <span class="step-chip" onclick="showStep(2)">조직도/실행계획</span>
       <span class="step-arrow">&#8250;</span>
-      <span class="step-chip" onclick="showStep(3)">③ 교육/참여</span>
+      <span class="step-chip" onclick="showStep(3)">교육</span>
       <span class="step-arrow">&#8250;</span>
-      <span class="step-chip" onclick="showStep(4)">④ 평가표</span>
+      <span class="step-chip" onclick="showStep(4)">참여서명</span>
       <span class="step-arrow">&#8250;</span>
-      <span class="step-chip" onclick="showStep(5)">⑤ 승인</span>
+      <span class="step-chip" onclick="showStep(5)">평가표</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(6)">결과공유서명</span>
+      <span class="step-arrow">&#8250;</span>
+      <span class="step-chip" onclick="showStep(7)">승인</span>
     </div>
 
-    <!-- Step 1 -->
+        <!-- Step 1 -->
     <div class="step-content" id="step-1">
       <div class="step-detail">
         <div class="step-detail-header">
@@ -767,31 +771,217 @@ img{max-width:100%;display:block}
         <div class="step-detail-body">
           <div class="info-box info">
             <span class="ib-icon">&#128161;</span>
-            <div>본인 계정으로 로그인 시 매장 정보가 <strong>자동 입력</strong>됩니다. 매장명만 넣으면 나머지는 자동 완성됩니다.</div>
+            <div>평가 실시일 및 근무인원수는 <strong>직접 입력</strong>해야 합니다.</div>
           </div>
-          <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">확인/입력 항목</h4>
-          <ul>
-            <li><strong>평가 실시일</strong> — 필수 입력
-              <br><span style="font-size:12px;color:var(--c-text-muted)">정기평가: 직전 정기평가일로부터 6개월 이내(연 2회 이상) 날짜로 작성</span></li>
-            <li><strong>관리감독자(점장)</strong> — 자동 입력 확인</li>
-            <li><strong>근무 인원수</strong> — 수기 입력 필수</li>
-            <li><strong>평가유형</strong> — <strong>"정기"</strong> 선택 필수</li>
-          </ul>
-          <div class="info-box warn mt-16">
-            <span class="ib-icon">&#9888;&#65039;</span>
-            <div><strong>*</strong> 표시 항목은 필수 입력입니다. 미입력 시 다음 단계로 넘어가지 않습니다.</div>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step1-basic.png" alt="기본정보 화면" loading="lazy">
           </div>
-
-          <div class="step-nav">
+          <div class="step-nav mt-16">
             <div></div>
             <button class="step-nav-btn next" onclick="showStep(2)">
-              다음: ② 조직도
+              다음: 조직도/실행계획
               <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Step 2 -->
+    <div class="step-content" id="step-2" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-detail-title">조직도/실행계획</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">참여근로자 입력 및 계획서 작성</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">참여근로자 추가</h4>
+          <ul>
+            <li>참여근로자 이름을 정확하게 입력하고 <strong>추가 버튼</strong>을 누릅니다.</li>
+            <li>실행계획서 사전 작성 내용(평가계획일, 사전준비 내용 등)을 확인/수정합니다.</li>
+          </ul>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step2-org.png" alt="조직도/실행계획 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(1)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 기본정보
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(3)">
+              다음: 교육
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-content" id="step-3" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-detail-title">교육 자료 및 증빙</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">사전 교육 실시 및 사진 등록</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <ul>
+            <li>교육 자료를 확인하고 근로자들에게 사전 교육을 실시합니다.</li>
+            <li>교육 일자를 확인하고, 필요 시 <strong>사전 교육 사진 첨부</strong>를 통해 증빙을 등록합니다.</li>
+          </ul>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step3-edu.png" alt="교육 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(2)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 조직도/실행계획
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(4)">
+              다음: 참여서명
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-content" id="step-4" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-detail-title">참여근로자 서명</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">QR코드 또는 주소를 통한 자필 서명</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:8px">서명 진행 방법</h4>
+          <ul>
+            <li><strong>QR 코드 보기</strong> 버튼을 눌러 근로자 스마트폰으로 스캔하게 합니다.</li>
+            <li>근로자는 스마트폰 화면에서 본인 이름을 확인하고 자필 서명을 제출합니다.</li>
+          </ul>
+          <div class="info-box danger mt-8">
+            <span class="ib-icon">&#128680;</span>
+            <div>근로자 서명이 완료되어야 다음 단계로 원활하게 넘어갈 수 있습니다.</div>
+          </div>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step4-sign.png" alt="참여서명 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(3)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 교육
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(5)">
+              다음: 평가표
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-content" id="step-5" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">5</div>
+          <div>
+            <div class="step-detail-title">평가표 작성</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">작업 공정별 JSA 위험성 평가</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <ul>
+            <li>16개 주요 공정을 순서대로 확인하며 <strong>유해/위험요인</strong>을 파악합니다.</li>
+            <li>개선 전/후 위험성을 <strong>상/중/하</strong>로 판정하고 필요 시 사진을 첨부합니다.</li>
+          </ul>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step5-table.png" alt="평가표 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(4)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 참여서명
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(6)">
+              다음: 결과공유서명
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step-content" id="step-6" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">6</div>
+          <div>
+            <div class="step-detail-title">결과공유서명</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">법적 요건 확인 및 결과 공유 전자서명</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <ul>
+            <li>위험성평가 후 결과 및 위험요인을 확인하는 체크리스트를 선택합니다.</li>
+            <li>참여근로자에게 <strong>결과 공유 서명 주소</strong>를 전달하여 서명을 취합합니다.</li>
+          </ul>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step6-share.png" alt="결과공유서명 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(5)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 평가표
+            </button>
+            <button class="step-nav-btn next" onclick="showStep(7)">
+              다음: 승인
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step-content" id="step-7" style="display:none">
+      <div class="step-detail">
+        <div class="step-detail-header">
+          <div class="step-num">7</div>
+          <div>
+            <div class="step-detail-title">승인</div>
+            <div style="font-size:12px;color:var(--c-text-muted);margin-top:2px">관리자 및 안전보건팀 최종 승인</div>
+          </div>
+        </div>
+        <div class="step-detail-body">
+          <ul>
+            <li>관리감독자가 확인 의견을 작성하고 제출을 진행합니다.</li>
+            <li>이후 관리자(파트장 등)와 안전보건팀이 내용을 검토하고 <strong>최종 승인</strong>을 완료합니다.</li>
+          </ul>
+          <div class="screenshot-frame mt-16">
+            <img src="assets/shot-step7-approval.png" alt="승인 화면" loading="lazy">
+          </div>
+          <div class="step-nav mt-16">
+            <button class="step-nav-btn prev" onclick="showStep(6)">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              이전: 결과공유서명
+            </button>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Step 2 -->
     <div class="step-content" id="step-2" style="display:none">
@@ -1330,7 +1520,7 @@ function goPage(id) {
 let currentStep = 1;
 function showStep(n) {
   currentStep = n;
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 7; i++) {
     const el = $('step-' + i);
     if (el) el.style.display = i === n ? 'block' : 'none';
   }
