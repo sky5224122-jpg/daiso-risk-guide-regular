@@ -605,32 +605,46 @@
       box-shadow: var(--shadow-sm);
     }
     .qr-card img {
-      width: 120px;
-      height: 120px;
+      width: 160px;
+      height: 160px;
       border-radius: 8px;
-      border: 1px solid var(--c-border-light);
+      border: 2px solid var(--c-border);
+      flex-shrink: 0;
+      image-rendering: pixelated;
     }
     .qr-info h4 {
       font-size: 18px;
       color: var(--c-primary);
-      margin-bottom: 4px;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
-    .qr-info p {
-      font-size: 14px;
-      color: var(--c-text-muted);
-      margin-bottom: 12px;
-    }
-    .qr-info a {
-      display: inline-block;
+    .qr-info .qr-url {
       font-size: 13px;
+      color: #1d4ed8;
+      font-weight: 600;
+      word-break: break-all;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      display: block;
+      font-family: monospace;
+    }
+    .qr-info a.qr-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
       font-weight: 700;
       color: white;
       background: var(--c-primary);
-      padding: 6px 12px;
-      border-radius: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
       text-decoration: none;
+      transition: background 0.2s;
     }
-    .qr-info a:hover {
+    .qr-info a.qr-btn:hover {
       background: var(--c-primary-hover);
     }
     .pw-badge {
@@ -736,42 +750,48 @@
               <img src="assets/qr-v2.png" alt="V2 QR Code">
               <div class="qr-info">
                 <h4>V2. 인천/경남영업부</h4>
-                <a href="https://asung-daiso-risk-v2.web.app" target="_blank">V2 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v2.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v2.web.app" target="_blank">🔗 V2 사이트 접속</a>
               </div>
             </div>
             <div class="qr-card">
               <img src="assets/qr-v3.png" alt="V3 QR Code">
               <div class="qr-info">
                 <h4>V3. 강북/충청영업부</h4>
-                <a href="https://asung-daiso-risk-v3.web.app" target="_blank">V3 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v3.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v3.web.app" target="_blank">🔗 V3 사이트 접속</a>
               </div>
             </div>
             <div class="qr-card">
               <img src="assets/qr-v4.png" alt="V4 QR Code">
               <div class="qr-info">
                 <h4>V4. 강남구리/경북영업부</h4>
-                <a href="https://asung-daiso-risk-v4.web.app" target="_blank">V4 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v4.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v4.web.app" target="_blank">🔗 V4 사이트 접속</a>
               </div>
             </div>
             <div class="qr-card">
               <img src="assets/qr-v5.png" alt="V5 QR Code">
               <div class="qr-info">
                 <h4>V5. 관악평택안산/강원</h4>
-                <a href="https://asung-daiso-risk-v5.web.app" target="_blank">V5 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v5.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v5.web.app" target="_blank">🔗 V5 사이트 접속</a>
               </div>
             </div>
             <div class="qr-card">
               <img src="assets/qr-v6.png" alt="V6 QR Code">
               <div class="qr-info">
                 <h4>V6. 호남/수원용인영업부</h4>
-                <a href="https://asung-daiso-risk-v6.web.app" target="_blank">V6 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v6.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v6.web.app" target="_blank">🔗 V6 사이트 접속</a>
               </div>
             </div>
             <div class="qr-card">
               <img src="assets/qr-v7.png" alt="V7 QR Code">
               <div class="qr-info">
                 <h4>V7. 본사, 오픈지원부</h4>
-                <a href="https://asung-daiso-risk-v7.web.app" target="_blank">V7 사이트 접속</a>
+                <span class="qr-url">asung-daiso-risk-v7.web.app</span>
+                <a class="qr-btn" href="https://asung-daiso-risk-v7.web.app" target="_blank">🔗 V7 사이트 접속</a>
               </div>
             </div>
           </div>
